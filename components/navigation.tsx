@@ -59,7 +59,7 @@ export function Navigation() {
           transition-all duration-700 ease-in-out
           rounded-full px-6 py-3 glass-nav relative
           border border-white/20 dark:border-white/10 shadow-2xl
-          ${scrolled ? "backdrop-blur-xl bg-white/10 dark:bg-black/10" : "backdrop-blur-md bg-white/5 dark:bg-black/5"}
+          ${scrolled ? "backdrop-blur-xl bg-white/60 dark:bg-black/10" : "backdrop-blur-md bg-white/60 dark:bg-black/5"}
         `}
         style={{
           width: collapsed ? "64px" : `${expandedWidth}px`,

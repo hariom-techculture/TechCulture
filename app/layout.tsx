@@ -31,7 +31,7 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="min-h-screen gradient-bg hero-pattern">
             <Navigation />
-            <main className="pt-24">{children}</main>
+            <main>{children}</main>
             <Footer />
           </div>
         </ThemeProvider>

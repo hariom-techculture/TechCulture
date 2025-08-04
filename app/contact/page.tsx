@@ -60,19 +60,19 @@ export default function ContactPage() {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      details: ["+91 98765 43210", "+91 98765 43211"],
+      details: ["+91 9351294102", "1206541411"],
       description: "Mon-Fri 9AM-6PM IST",
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      details: ["contact@techculture.com", "support@techculture.com"],
+      details: ["info@techculture.solutions"],
       description: "We'll respond within 24 hours",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Office",
-      details: ["123 Tech Street", "Innovation City, IC 12345"],
+      details: ["1207, 12th Floor, Rohit House,3 Tolstoy Road Connaught PlaceNew Delhi 110001", "B35/2, Lobe- 03, 5th Floor of Tower B, The Corenthum Building, Sector- 62 Noida Uttar Pradesh 201301"],
       description: "Visit us during business hours",
     },
     {
@@ -83,29 +83,29 @@ export default function ContactPage() {
     },
   ]
 
-  const offices = [
-    {
-      city: "Mumbai",
-      address: "123 Tech Street, Bandra East, Mumbai 400051",
-      phone: "+91 98765 43210",
-      email: "mumbai@techculture.com",
-      image: "/placeholder.svg?height=200&width=300&text=Mumbai+Office",
-    },
-    {
-      city: "Bangalore",
-      address: "456 Innovation Hub, Koramangala, Bangalore 560034",
-      phone: "+91 98765 43211",
-      email: "bangalore@techculture.com",
-      image: "/placeholder.svg?height=200&width=300&text=Bangalore+Office",
-    },
-    {
-      city: "Delhi",
-      address: "789 Business Center, Connaught Place, Delhi 110001",
-      phone: "+91 98765 43212",
-      email: "delhi@techculture.com",
-      image: "/placeholder.svg?height=200&width=300&text=Delhi+Office",
-    },
-  ]
+  // const offices = [
+  //   {
+  //     city: "Mumbai",
+  //     address: "123 Tech Street, Bandra East, Mumbai 400051",
+  //     phone: "+91 98765 43210",
+  //     email: "mumbai@techculture.com",
+  //     image: "/placeholder.svg?height=200&width=300&text=Mumbai+Office",
+  //   },
+  //   {
+  //     city: "Bangalore",
+  //     address: "456 Innovation Hub, Koramangala, Bangalore 560034",
+  //     phone: "+91 98765 43211",
+  //     email: "bangalore@techculture.com",
+  //     image: "/placeholder.svg?height=200&width=300&text=Bangalore+Office",
+  //   },
+  //   {
+  //     city: "Delhi",
+  //     address: "789 Business Center, Connaught Place, Delhi 110001",
+  //     phone: "+91 98765 43212",
+  //     email: "delhi@techculture.com",
+  //     image: "/placeholder.svg?height=200&width=300&text=Delhi+Office",
+  //   },
+  // ]
 
   const services = [
     "Hardware Solutions",
@@ -157,10 +157,10 @@ export default function ContactPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        <ParallaxSection speed={0.3} className="absolute inset-0 -z-10">
+      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+        {/* <ParallaxSection speed={0.3} className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
-        </ParallaxSection>
+        </ParallaxSection> */}
 
         <div className="container mx-auto text-center relative z-10">
           <AnimatedSection>
@@ -183,7 +183,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-20">
             {/* Contact Form */}
             <AnimatedSection animation="fadeInLeft">
-              <Card className="glass-card glow">
+              <Card className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl">
                 <CardContent className="p-10">
                   <div className="mb-8">
                     <h2 className="text-3xl font-bold font-poppins text-foreground mb-4">
@@ -250,7 +250,7 @@ export default function ContactPage() {
                         name="service"
                         value={formData.service}
                         onChange={handleInputChange}
-                        className="w-full glass-card border-white/20 dark:border-white/10 bg-transparent rounded-lg px-4 py-3 text-foreground"
+                        className="w-full glass-card border-white/20 dark:border-white/10 bg-transparent rounded-md shadow px-4 py-3 text-foreground"
                       >
                         <option value="">Select a service</option>
                         {services.map((service) => (
@@ -277,7 +277,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full btn-primary rounded-full py-4 text-lg font-semibold"
+                      className="w-full btn-primary rounded-md py-6 text-lg font-semibold max-w-[40%]"
                     >
                       {isSubmitting ? (
                         <>
@@ -297,7 +297,7 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <AnimatedSection animation="fadeInRight">
-              <div className="space-y-8">
+              <div className="space-y-10">
                 <div>
                   <h2 className="text-3xl font-bold font-poppins text-foreground mb-6">
                     Contact <span className="text-gradient">Information</span>
@@ -309,7 +309,7 @@ export default function ContactPage() {
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   {contactInfo.map((info, index) => (
-                    <Card key={index} className="glass-card glass-hover">
+                    <Card key={index} className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl">
                       <CardContent className="p-6">
                         <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
                           <div className="text-primary">{info.icon}</div>
@@ -327,7 +327,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Social Links */}
-                <Card className="glass-card">
+                {/* <Card className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl">
                   <CardContent className="p-6">
                     <h3 className="font-semibold text-foreground mb-4">Follow Us</h3>
                     <div className="flex space-x-4">
@@ -342,10 +342,10 @@ export default function ContactPage() {
                       </Button>
                     </div>
                   </CardContent>
-                </Card>
+                </Card> */}
 
                 {/* Quick Actions */}
-                <div className="space-y-4">
+                {/* <div className="space-y-4">
                   <Button className="w-full btn-secondary rounded-full justify-start">
                     <Calendar className="w-5 h-5 mr-3" />
                     Schedule a Meeting
@@ -358,7 +358,7 @@ export default function ContactPage() {
                     <Users className="w-5 h-5 mr-3" />
                     Request Demo
                   </Button>
-                </div>
+                </div> */}
               </div>
             </AnimatedSection>
           </div>
@@ -366,7 +366,7 @@ export default function ContactPage() {
       </section>
 
       {/* Office Locations */}
-      <section className="py-32 px-6">
+      {/* <section className="py-10 px-6">
         <div className="container mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -419,23 +419,22 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Map Section */}
-      <section className="py-32 px-6">
+      <section className="pb-10 px-6">
         <div className="container mx-auto">
           <AnimatedSection>
-            <Card className="glass-card overflow-hidden">
+            <Card className="glass-card p-0 overflow-hidden">
               <div className="relative h-96">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-foreground mb-2">Interactive Map</h3>
-                    <p className="text-muted-foreground">
-                      Google Maps integration would be implemented here in production
-                    </p>
-                  </div>
-                </div>
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.056200150182!2d77.2225690760672!3d28.628077684281838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd33b95c2ef1%3A0xfe68a915348015f8!2sRohit%20House%2C%202%2C%20Tolstoy%20Rd%2C%20Barakhamba%2C%20New%20Delhi%2C%20Delhi%20110001!5e0!3m2!1sen!2sin!4v1754302489577!5m2!1sen!2sin" 
+                  className="w-full h-full"
+                  style={{border:0}} 
+                  allowFullScreen={true} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
             </Card>
           </AnimatedSection>

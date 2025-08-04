@@ -38,7 +38,7 @@ export function Navigation() {
   
   useEffect(() => {
     if (navRef.current) {
-      setExpandedWidth(navRef.current.scrollWidth + 64)
+      setExpandedWidth(navRef.current.scrollWidth + 88)
     }
   }, [collapsed, pathname])
 

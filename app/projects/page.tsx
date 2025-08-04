@@ -5,366 +5,364 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/animated-section"
 import { ParallaxSection } from "@/components/parallax-section"
 import {
   ArrowRight,
-  Filter,
-  ExternalLink,
-  Calendar,
-  MapPin,
-  Users,
-  TrendingUp,
-  Award,
   CheckCircle,
-  Code,
+  Clock,
+  MapPin,
+  Building,
+  Satellite,
+  Wifi,
   Database,
   Globe,
   HardDrive,
+  Code,
+  Award,
+  Users,
+  TrendingUp,
+  ExternalLink,
 } from "lucide-react"
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState("All")
+  const [activeTab, setActiveTab] = useState("completed")
 
-  const filters = ["All", "Hardware", "Software", "Enterprise", "GIS"]
-
-  const projects = [
+  const completedProjects = [
     {
       id: 1,
-      title: "Global Manufacturing ERP Transformation",
-      client: "Global Manufacturing Corp",
-      category: "Enterprise",
-      duration: "18 months",
-      location: "Mumbai, India",
-      team: "25 professionals",
-      image: "/placeholder.svg?height=400&width=600&text=Manufacturing+ERP",
-      logo: "/placeholder.svg?height=60&width=120&text=GMC",
-      challenge:
-        "Legacy systems across 15 facilities causing operational inefficiencies and poor visibility into manufacturing processes.",
-      solution:
-        "Implemented comprehensive ERP system with real-time dashboards, automated workflows, and integrated supply chain management.",
-      results: [
-        "40% increase in operational efficiency",
-        "30% reduction in processing time",
-        "Unified operations across all facilities",
-        "Real-time visibility into production metrics",
-      ],
-      technologies: ["SAP", "Azure", "Power BI", "REST APIs"],
-      testimonial: {
-        quote:
-          "TechCulture Solutions transformed our entire manufacturing operation. The results exceeded our expectations.",
-        author: "Sarah Johnson",
-        position: "CTO, Global Manufacturing Corp",
-      },
+      title: "Underground Utility Detection",
+      description: "GPR EPL and DGPS survey at Chittapur - Depth Upto 3 Mtrs, Corridor Upto 10 Mtrs",
+      category: "Survey & Mapping",
+      location: "Chittapur",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Satellite className="w-6 h-6" />,
+      technologies: ["GPR", "EPL", "DGPS"],
+      status: "Completed"
     },
     {
       id: 2,
-      title: "Smart City GIS Analytics Platform",
-      client: "Smart City Initiative",
-      category: "GIS",
-      duration: "12 months",
-      location: "Bangalore, India",
-      team: "18 professionals",
-      image: "/placeholder.svg?height=400&width=600&text=Smart+City+GIS",
-      logo: "/placeholder.svg?height=60&width=120&text=SCI",
-      challenge:
-        "Urban planners needed comprehensive GIS platform to optimize city development and infrastructure planning.",
-      solution:
-        "Developed integrated GIS platform with spatial analysis, real-time data visualization, and predictive modeling capabilities.",
-      results: [
-        "25% reduction in planning time",
-        "Improved decision-making accuracy",
-        "Enhanced citizen services delivery",
-        "Optimized resource allocation",
-      ],
-      technologies: ["ArcGIS", "PostGIS", "React", "Node.js"],
-      testimonial: {
-        quote:
-          "The GIS solution revolutionized our urban planning process. Exceptional technical expertise and support.",
-        author: "Michael Chen",
-        position: "Director, Smart City Initiative",
-      },
+      title: "Door to Door Consumer Survey",
+      description: "Multiple ULBs of UP under JJM Project",
+      category: "Survey & Mapping",
+      location: "Uttar Pradesh",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Users className="w-6 h-6" />,
+      technologies: ["Mobile Survey", "GIS Mapping"],
+      status: "Completed"
     },
     {
       id: 3,
-      title: "FinTech Mobile Banking Platform",
-      client: "FinTech Startup",
-      category: "Software",
-      duration: "8 months",
-      location: "Delhi, India",
-      team: "15 professionals",
-      image: "/placeholder.svg?height=400&width=600&text=Mobile+Banking",
-      logo: "/placeholder.svg?height=60&width=120&text=FTS",
-      challenge:
-        "Needed scalable mobile banking app to compete with established financial institutions and serve millions of users.",
-      solution:
-        "Built cross-platform mobile application with advanced security features, real-time transactions, and intuitive user experience.",
-      results: [
-        "2M+ active users in 6 months",
-        "4.8-star app store rating",
-        "99.9% uptime achieved",
-        "50% faster transaction processing",
-      ],
-      technologies: ["React Native", "Node.js", "MongoDB", "AWS"],
-      testimonial: {
-        quote: "From concept to deployment, their team delivered beyond our expectations. Highly recommended!",
-        author: "Emily Rodriguez",
-        position: "CEO, FinTech Startup",
-      },
+      title: "APT Survey",
+      description: "Multiple States (Tamil Nadu, Kerala, MP, NE)",
+      category: "Survey & Mapping",
+      location: "Pan India",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Globe className="w-6 h-6" />,
+      technologies: ["APT Survey", "Multi-State"],
+      status: "Completed"
     },
     {
       id: 4,
-      title: "Healthcare Infrastructure Modernization",
-      client: "Regional Healthcare Network",
-      category: "Hardware",
-      duration: "14 months",
-      location: "Chennai, India",
-      team: "20 professionals",
-      image: "/placeholder.svg?height=400&width=600&text=Healthcare+Infrastructure",
-      logo: "/placeholder.svg?height=60&width=120&text=RHN",
-      challenge:
-        "Aging IT infrastructure across 12 hospitals causing system downtime and affecting patient care quality.",
-      solution:
-        "Comprehensive infrastructure overhaul with redundant systems, cloud integration, and 24/7 monitoring capabilities.",
-      results: [
-        "99.8% system uptime achieved",
-        "60% reduction in IT maintenance costs",
-        "Improved patient data security",
-        "Faster diagnostic processing",
-      ],
-      technologies: ["VMware", "Cisco", "Dell EMC", "Microsoft Azure"],
-      testimonial: {
-        quote: "The infrastructure transformation significantly improved our operational efficiency and patient care.",
-        author: "Dr. Rajesh Gupta",
-        position: "CIO, Regional Healthcare Network",
-      },
+      title: "Topographical Survey - Ratangarh",
+      description: "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
+      category: "Infrastructure",
+      location: "Ratangarh",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Building className="w-6 h-6" />,
+      technologies: ["DGPS", "ABD Drawings", "L&T"],
+      status: "Completed"
     },
     {
       id: 5,
-      title: "E-commerce Analytics Dashboard",
-      client: "Retail Giant",
-      category: "Software",
-      duration: "6 months",
-      location: "Hyderabad, India",
-      team: "12 professionals",
-      image: "/placeholder.svg?height=400&width=600&text=Analytics+Dashboard",
-      logo: "/placeholder.svg?height=60&width=120&text=RG",
-      challenge:
-        "Needed comprehensive analytics platform to track sales performance, customer behavior, and inventory management.",
-      solution:
-        "Developed real-time analytics dashboard with AI-powered insights, predictive analytics, and automated reporting.",
-      results: [
-        "35% improvement in inventory turnover",
-        "Real-time sales tracking",
-        "Automated reporting system",
-        "Enhanced customer insights",
-      ],
-      technologies: ["Python", "TensorFlow", "React", "PostgreSQL"],
-      testimonial: {
-        quote: "The analytics platform provided invaluable insights that transformed our business operations.",
-        author: "Anita Sharma",
-        position: "VP Analytics, Retail Giant",
-      },
+      title: "Topographical Survey - Sirohi",
+      description: "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
+      category: "Infrastructure",
+      location: "Sirohi",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Building className="w-6 h-6" />,
+      technologies: ["DGPS", "ABD Drawings", "L&T"],
+      status: "Completed"
     },
     {
       id: 6,
-      title: "Supply Chain Management System",
-      client: "Logistics Corporation",
-      category: "Enterprise",
-      duration: "10 months",
-      location: "Pune, India",
-      team: "22 professionals",
-      image: "/placeholder.svg?height=400&width=600&text=Supply+Chain",
-      logo: "/placeholder.svg?height=60&width=120&text=LC",
-      challenge:
-        "Complex supply chain operations needed integrated system for tracking, optimization, and real-time visibility.",
-      solution:
-        "Implemented end-to-end supply chain management system with IoT integration, route optimization, and predictive maintenance.",
-      results: [
-        "30% reduction in delivery time",
-        "25% cost savings in operations",
-        "Real-time shipment tracking",
-        "Improved customer satisfaction",
-      ],
-      technologies: ["Oracle", "IoT Sensors", "Machine Learning", "Mobile Apps"],
-      testimonial: {
-        quote:
-          "The supply chain system revolutionized our logistics operations and improved customer satisfaction significantly.",
-        author: "Vikram Singh",
-        position: "Operations Director, Logistics Corporation",
-      },
+      title: "Topographical Survey - Fatehpur",
+      description: "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
+      category: "Infrastructure",
+      location: "Fatehpur",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Building className="w-6 h-6" />,
+      technologies: ["DGPS", "ABD Drawings", "L&T"],
+      status: "Completed"
     },
+    {
+      id: 7,
+      title: "Topographical Survey - Laxmangarh",
+      description: "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
+      category: "Infrastructure",
+      location: "Laxmangarh",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Building className="w-6 h-6" />,
+      technologies: ["DGPS", "ABD Drawings", "L&T"],
+      status: "Completed"
+    },
+    {
+      id: 8,
+      title: "Topographical Survey - Bharatpur",
+      description: "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
+      category: "Infrastructure",
+      location: "Bharatpur",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Building className="w-6 h-6" />,
+      technologies: ["DGPS", "ABD Drawings", "L&T"],
+      status: "Completed"
+    },
+    {
+      id: 9,
+      title: "Topographical Survey - Gangapur",
+      description: "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
+      category: "Infrastructure",
+      location: "Gangapur",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Building className="w-6 h-6" />,
+      technologies: ["DGPS", "ABD Drawings", "L&T"],
+      status: "Completed"
+    },
+    {
+      id: 10,
+      title: "Topographical Survey - Hindaun",
+      description: "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
+      category: "Infrastructure",
+      location: "Hindaun",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Building className="w-6 h-6" />,
+      technologies: ["DGPS", "ABD Drawings", "L&T"],
+      status: "Completed"
+    },
+    {
+      id: 11,
+      title: "OFC Route Survey",
+      description: "Route survey and As Built Map preparation of OFC connectivity",
+      category: "Telecommunications",
+      location: "Multiple Locations",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Wifi className="w-6 h-6" />,
+      technologies: ["OFC Survey", "As Built Maps"],
+      status: "Completed"
+    },
+    {
+      id: 12,
+      title: "Property Survey & GIS Mapping - UK",
+      description: "Door to door property survey and GIS mapping, Image procurement, portal development and deployment for calculation of labour cess",
+      category: "Government",
+      location: "Uttarakhand",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Database className="w-6 h-6" />,
+      technologies: ["GIS Mapping", "Portal Development", "Labour Cess"],
+      status: "Completed"
+    }
   ]
 
-  const filteredProjects =
-    activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter)
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "Hardware":
-        return <HardDrive className="w-5 h-5" />
-      case "Software":
-        return <Code className="w-5 h-5" />
-      case "Enterprise":
-        return <Database className="w-5 h-5" />
-      case "GIS":
-        return <Globe className="w-5 h-5" />
-      default:
-        return <CheckCircle className="w-5 h-5" />
+  const ongoingProjects = [
+    {
+      id: 13,
+      title: "BharatNet Feasibility Survey - Punjab",
+      description: "Conducting Feasibility survey by using DGPS and 360 videography under BharatNet project",
+      category: "Government",
+      location: "Punjab",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Wifi className="w-6 h-6" />,
+      technologies: ["DGPS", "360 Videography", "BharatNet"],
+      status: "Ongoing"
+    },
+    {
+      id: 14,
+      title: "BharatNet Feasibility Survey - Uttarakhand",
+      description: "Conducting Feasibility survey by using DGPS and 360 videography under BharatNet project",
+      category: "Government",
+      location: "Uttarakhand",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Wifi className="w-6 h-6" />,
+      technologies: ["DGPS", "360 Videography", "BharatNet"],
+      status: "Ongoing"
+    },
+    {
+      id: 15,
+      title: "GPR Survey - JJM Project UP",
+      description: "Conducting GPR Survey for detection of underground utilities and preparation of Drawings under JJM Project in multiple cities of Uttar Pradesh",
+      category: "Government",
+      location: "Uttar Pradesh",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Satellite className="w-6 h-6" />,
+      technologies: ["GPR Survey", "JJM Project", "Multiple Cities"],
+      status: "Ongoing"
+    },
+    {
+      id: 16,
+      title: "DFCC Railway Track Survey",
+      description: "Survey of Underground Fiber and Components (Poles / Splice / Chambers / Loops, etc.) using GPS-enabled Mobile Application along DFCC Railway Track from Rewari to Makarpura",
+      category: "Railway",
+      location: "Rewari to Makarpura",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <HardDrive className="w-6 h-6" />,
+      technologies: ["GPS Mobile App", "DFCC Railway", "Fiber Survey"],
+      status: "Ongoing"
+    },
+    {
+      id: 17,
+      title: "QR Code Asset Survey - DFCC",
+      description: "QR Code Pasting and Survey of Assets with various Photo's along with Lat. Long and assets description thru Mobile application from Rewari to Makarpura DFCC Railway track",
+      category: "Railway",
+      location: "Rewari to Makarpura",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Code className="w-6 h-6" />,
+      technologies: ["QR Codes", "Mobile App", "Asset Survey"],
+      status: "Ongoing"
+    },
+    {
+      id: 18,
+      title: "RailTel Underground Fiber Survey",
+      description: "Survey of Underground Fiber and Components (Poles, Splice, Chambers, Loops, etc.) using DGPS and EPL (Electronic Pipe Locator). As-built Drawings (ABD) to be prepared",
+      category: "Telecommunications",
+      location: "Multiple Locations",
+      image: "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
+      icon: <Wifi className="w-6 h-6" />,
+      technologies: ["DGPS", "EPL", "RailTel", "ABD Drawings"],
+      status: "Ongoing"
     }
+  ]
+
+  const getStatusColor = (status: string) => {
+    return status === "Completed" ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300" : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+  }
+
+  const getStatusIcon = (status: string) => {
+    return status === "Completed" ? <CheckCircle className="w-4 h-4" /> : <Clock className="w-4 h-4" />
   }
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        <ParallaxSection speed={0.3} className="absolute inset-0 -z-10">
+      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+        {/* <ParallaxSection speed={0.3} className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
-        </ParallaxSection>
+        </ParallaxSection> */}
 
         <div className="container mx-auto text-center relative z-10">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
               <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
-                Our <span className="text-gradient">Work</span>
+                Our <span className="text-gradient">Projects</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
-                Solutions That Deliver Results - Explore our portfolio of successful projects and transformative
-                solutions.
+                Transforming infrastructure through innovative surveying, mapping, and technology solutions across India.
               </p>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-16 px-6">
+      {/* Tab Navigation */}
+      <section className="pt-16 px-6">
         <div className="container mx-auto">
           <AnimatedSection>
-            <div className="flex flex-wrap justify-center gap-4 mb-16">
-              {filters.map((filter) => (
+            <div className="flex justify-center mb-16">
+              <div className="flex glass-card rounded-full p-2">
                 <Button
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  className={`rounded-full px-6 py-3 transition-all duration-300 ${
-                    activeFilter === filter ? "btn-primary" : "btn-secondary"
+                  onClick={() => setActiveTab("completed")}
+                  className={`rounded-full px-8 py-3 transition-all duration-300 ${
+                    activeTab === "completed" 
+                      ? "btn-primary" 
+                      : "bg-transparent hover:bg-white/10 border text-black"
                   }`}
                 >
-                  <Filter className="w-4 h-4 mr-2" />
-                  {filter}
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Completed Projects ({completedProjects.length})
                 </Button>
-              ))}
+                <Button
+                  onClick={() => setActiveTab("ongoing")}
+                  className={`rounded-full px-8 py-3 transition-all duration-300 ${
+                    activeTab === "ongoing" 
+                      ? "btn-primary" 
+                      : "bg-transparent hover:bg-white/10 border text-black"
+                  }`}
+                >
+                  <Clock className="w-4 h-4 mr-2" />
+                  Ongoing Projects ({ongoingProjects.length})
+                </Button>
+              </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16 px-6">
+      <section className="pt-10 pb-16 px-6">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {filteredProjects.map((project, index) => (
-              <AnimatedSection key={project.id} delay={index * 200}>
-                <Card className="glass-card glass-hover overflow-hidden group">
-                  <div className="relative h-64 overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {(activeTab === "completed" ? completedProjects : ongoingProjects).map((project, index) => (
+              <AnimatedSection key={project.id} delay={index * 100}>
+                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20">
+                  <div className="relative h-80 overflow-hidden">
                     <Image
-                      src={project.image || "/placeholder.svg"}
+                      src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className="absolute top-4 left-4">
-                      <div className="flex items-center space-x-2 glass-card px-3 py-1 rounded-full">
-                        {getCategoryIcon(project.category)}
+                    
+                    {/* Category Badge - Top Left */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
+                        <div className="text-white">
+                          {project.icon}
+                        </div>
                         <span className="text-white text-sm font-medium">{project.category}</span>
                       </div>
                     </div>
-                    <div className="absolute bottom-4 left-4">
-                      <Image
-                        src={project.logo || "/placeholder.svg"}
-                        alt={project.client}
-                        width={100}
-                        height={50}
-                        className="opacity-90"
-                      />
+                    
+                    {/* Status Badge - Top Right */}
+                    <div className="absolute top-4 right-4 z-10">
+                      <Badge className={`${getStatusColor(project.status)} bg-white/20 backdrop-blur-sm border border-white/20`}>
+                        <div className="flex items-center space-x-1">
+                          {getStatusIcon(project.status)}
+                          <span>{project.status}</span>
+                        </div>
+                      </Badge>
+                    </div>
+                    
+                    {/* Project Title - Bottom Left */}
+                    <div className="absolute bottom-4 left-4 right-4 z-10">
+                      <h3 className="text-xl font-bold text-white drop-shadow-lg">{project.title}</h3>
+                    </div>
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute bottom-6 left-0 right-0 p-6 text-white">
+                        <div className="space-y-4">
+                          <p className="text-sm leading-relaxed opacity-90 line-clamp-3">{project.description}</p>
+                          
+                          <div className="flex items-center space-x-2 text-sm opacity-80">
+                            <MapPin className="w-4 h-4" />
+                            <span>{project.location}</span>
+                          </div>
+
+                          <div>
+                            <h4 className="font-semibold mb-2 text-sm">Technologies</h4>
+                            <div className="flex flex-wrap gap-1.5">
+                              {project.technologies.map((tech, idx) => (
+                                <Badge key={idx} variant="secondary" className="text-xs bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30">
+                                  {tech}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-foreground mb-2">{project.title}</h3>
-                    <p className="text-primary font-medium mb-4">{project.client}</p>
-
-                    <div className="grid grid-cols-3 gap-4 mb-6 text-sm text-muted-foreground">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4" />
-                        <span>{project.duration}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="w-4 h-4" />
-                        <span>{project.location}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Users className="w-4 h-4" />
-                        <span>{project.team}</span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4 mb-6">
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-2">Challenge</h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{project.challenge}</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-2">Solution</h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{project.solution}</p>
-                      </div>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-foreground mb-3">Key Results</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {project.results.map((result, idx) => (
-                          <div key={idx} className="flex items-start space-x-2">
-                            <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                            <span className="text-muted-foreground text-sm">{result}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-foreground mb-3">Technologies Used</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1 glass-card text-xs font-medium text-foreground rounded-full"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="glass-card p-4 rounded-2xl mb-6">
-                      <blockquote className="text-sm text-foreground mb-2 italic">
-                        "{project.testimonial.quote}"
-                      </blockquote>
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-medium">{project.testimonial.author}</span>
-                        <span className="mx-1">•</span>
-                        <span>{project.testimonial.position}</span>
-                      </div>
-                    </div>
-
-                    <Button className="btn-primary w-full rounded-full" asChild>
-                      <Link href={`/projects/${project.id}`}>
-                        View Full Case Study <ExternalLink className="ml-2 w-4 h-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
+                </div>
               </AnimatedSection>
             ))}
           </div>
@@ -372,7 +370,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-32 px-6">
+      <section className="py-10 px-6">
         <div className="container mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -384,10 +382,10 @@ export default function ProjectsPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { number: "500+", label: "Projects Completed", icon: <CheckCircle className="w-8 h-8" /> },
-              { number: "98%", label: "Success Rate", icon: <Award className="w-8 h-8" /> },
-              { number: "150+", label: "Happy Clients", icon: <Users className="w-8 h-8" /> },
-              { number: "40%", label: "Average ROI Improvement", icon: <TrendingUp className="w-8 h-8" /> },
+              { number: `${completedProjects.length}+`, label: "Projects Completed", icon: <CheckCircle className="w-8 h-8" /> },
+              { number: `${ongoingProjects.length}+`, label: "Active Projects", icon: <Clock className="w-8 h-8" /> },
+              { number: "15+", label: "States Covered", icon: <MapPin className="w-8 h-8" /> },
+              { number: "98%", label: "Client Satisfaction", icon: <Award className="w-8 h-8" /> },
             ].map((stat, index) => (
               <AnimatedSection key={index} delay={index * 100}>
                 <Card className="glass-card glass-hover text-center">
@@ -406,7 +404,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-6">
+      {/* <section className="py-32 px-6">
         <div className="container mx-auto text-center">
           <AnimatedSection>
             <Card className="glass-card glow max-w-4xl mx-auto">
@@ -415,7 +413,7 @@ export default function ProjectsPage() {
                   Ready to Start Your <span className="text-gradient">Project</span>?
                 </h2>
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-2xl mx-auto">
-                  Let's discuss your requirements and create a solution that drives real business results.
+                  Let's discuss your surveying, mapping, or infrastructure requirements and create a solution that delivers results.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                   <Button size="lg" className="btn-primary px-10 py-4 text-lg font-semibold rounded-full" asChild>
@@ -431,7 +429,7 @@ export default function ProjectsPage() {
             </Card>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

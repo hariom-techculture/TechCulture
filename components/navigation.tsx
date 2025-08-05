@@ -61,7 +61,7 @@ export function Navigation() {
   
   useEffect(() => {
     if (navRef.current) {
-      setExpandedWidth(navRef.current.scrollWidth + 88)
+      setExpandedWidth(navRef.current.scrollWidth + 100)
     }
   }, [collapsed, pathname])
 
@@ -90,21 +90,34 @@ export function Navigation() {
           minWidth: "64px"
         }}
       >
-        {/* Toggle Button - Always positioned at center when collapsed */}
-        
+        {/* Toggle Button - Centered when collapsed */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setCollapsed(!collapsed)}
+          className={`h-9 w-9 glass-card hover:glass-hover rounded-full z-50 transition-all duration-300 absolute ${
+            collapsed ? "opacity-100" : "opacity-100"
+          }`}
+          style={{
+            left: collapsed ? "50%" : "auto",
+            right: collapsed ? "auto" : "12px",
+            transform: collapsed ? "translateX(-50%)" : "none"
+          }}
+        >
+          {collapsed ? <Menu className="h-4 w-4" /> : <X className="h-4 w-4" />}
+        </Button>
 
         {/* Navigation Content */}
         <div
           ref={navRef}
-          className={`flex items-center transition-all duration-500 ease-in-out  gap-6 ${
+          className={`flex items-center transition-all duration-500 ease-in-out gap-6 ${
             collapsed ? "opacity-0 translate-x-10 pointer-events-none" : "opacity-100 translate-x-0"
           }`}
           style={{ 
-            whiteSpace: "nowrap",
-            
+            whiteSpace: "nowrap"
           }}
         >
-          <div className="flex items-center space-x-6 ">
+          <div className="flex items-center space-x-6">
             {navItems.map((item) => (
               item.dropdown ? (
                 <div
@@ -158,14 +171,6 @@ export function Navigation() {
           </div>
           <ThemeToggle />
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setCollapsed(!collapsed)}
-          className={`h-9 w-9 glass-card hover:glass-hover rounded-full z-20 transition-all duration-300  `}
-        >
-          {collapsed ? <Menu className="h-4 w-4" /> : <X className="h-4 w-4" />}
-        </Button>
       </div>
 
       {/* Mobile Toggle */}

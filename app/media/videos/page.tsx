@@ -8,15 +8,15 @@ import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/animated-section"
 
 const videos = [
-  { id: 1, title: "Company Overview 2024", thumbnail: "/placeholder.jpg", duration: "2:45", category: "Corporate", views: "1.2K", likes: 89, height: 280 },
-  { id: 2, title: "Tech Innovation Showcase", thumbnail: "/placeholder.jpg", duration: "4:12", category: "Technology", views: "2.8K", likes: 156, height: 350 },
-  { id: 3, title: "Team Culture & Values", thumbnail: "/placeholder.jpg", duration: "3:28", category: "Culture", views: "956", likes: 67, height: 320 },
-  { id: 4, title: "Product Demo: AI Solutions", thumbnail: "/placeholder.jpg", duration: "5:33", category: "Product", views: "3.4K", likes: 234, height: 300 },
-  { id: 5, title: "Client Success Stories", thumbnail: "/placeholder.jpg", duration: "6:15", category: "Testimonials", views: "1.8K", likes: 123, height: 380 },
-  { id: 6, title: "Behind the Scenes", thumbnail: "/placeholder.jpg", duration: "3:47", category: "Culture", views: "1.1K", likes: 78, height: 260 },
-  { id: 7, title: "Office Tour", thumbnail: "/placeholder.jpg", duration: "2:15", category: "Culture", views: "890", likes: 45, height: 340 },
-  { id: 8, title: "New Product Launch", thumbnail: "/placeholder.jpg", duration: "3:22", category: "Product", views: "2.1K", likes: 178, height: 290 },
-  { id: 9, title: "Developer Interview", thumbnail: "/placeholder.jpg", duration: "4:45", category: "Technology", views: "1.5K", likes: 92, height: 360 },
+  { id: 1, title: "Company Overview 2024", thumbnail: "/placeholder.jpg", duration: "2:45", category: "Corporate",  height: 280 },
+  { id: 2, title: "Tech Innovation Showcase", thumbnail: "/placeholder.jpg", duration: "4:12", category: "Technology",  height: 350 },
+  { id: 3, title: "Team Culture & Values", thumbnail: "/placeholder.jpg", duration: "3:28", category: "Culture", height: 320 },
+  { id: 4, title: "Product Demo: AI Solutions", thumbnail: "/placeholder.jpg", duration: "5:33", category: "Product",  height: 300 },
+  { id: 5, title: "Client Success Stories", thumbnail: "/placeholder.jpg", duration: "6:15", category: "Testimonials", height: 380 },
+  { id: 6, title: "Behind the Scenes", thumbnail: "/placeholder.jpg", duration: "3:47", category: "Culture",  height: 260 },
+  { id: 7, title: "Office Tour", thumbnail: "/placeholder.jpg", duration: "2:15", category: "Culture",  height: 340 },
+  { id: 8, title: "New Product Launch", thumbnail: "/placeholder.jpg", duration: "3:22", category: "Product",  height: 290 },
+  { id: 9, title: "Developer Interview", thumbnail: "/placeholder.jpg", duration: "4:45", category: "Technology",  height: 360 },
 ]
 
 const categories = ["All", "Corporate", "Technology", "Culture", "Product", "Testimonials"]
@@ -148,7 +148,7 @@ export default function VideoGallery() {
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
                   <h3 className="text-white font-medium text-sm mb-1 line-clamp-2">{video.title}</h3>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-white/70">{video.views} views</span>
+                    {/* <span className="text-white/70">{video.views} views</span> */}
                     <div className="flex items-center gap-1">
                       <Button
                         size="sm"
@@ -159,9 +159,9 @@ export default function VideoGallery() {
                         }}
                         className="text-white hover:text-red-400 p-1 h-5 w-5"
                       >
-                        <Heart className={`h-3 w-3 ${likedVideos.has(video.id) ? 'fill-red-400 text-red-400' : ''}`} />
+                        {/* <Heart className={`h-3 w-3 ${likedVideos.has(video.id) ? 'fill-red-400 text-red-400' : ''}`} /> */}
                       </Button>
-                      <span className="text-white/70">{video.likes}</span>
+                      {/* <span className="text-white/70">{video.likes}</span> */}
                     </div>
                   </div>
                 </div>
@@ -248,19 +248,19 @@ export default function VideoGallery() {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-semibold mb-2">{selectedVideo.title}</h3>
-                      <p className="text-muted-foreground">{selectedVideo.description}</p>
+                      {/* <p className="text-muted-foreground">{selectedVideo.description}</p> */}
                     </div>
                     <Badge variant="secondary">{selectedVideo.category}</Badge>
                   </div>
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                      <span>{selectedVideo.views} views</span>
+                      {/* <span>{selectedVideo.views} views</span> */}
                       <span>{selectedVideo.duration}</span>
                     </div>
                     
                     <div className="flex items-center gap-2">
-                      <Button
+                      {/* <Button
                         size="sm"
                         variant="outline"
                         onClick={() => toggleLike(selectedVideo.id)}
@@ -270,7 +270,7 @@ export default function VideoGallery() {
                           className={`h-4 w-4 ${likedVideos.has(selectedVideo.id) ? 'fill-red-400 text-red-400' : ''}`} 
                         />
                         {selectedVideo.likes}
-                      </Button>
+                      </Button> */}
                       <Button size="sm" variant="outline" className="flex items-center gap-2">
                         <Share2 className="h-4 w-4" />
                         Share

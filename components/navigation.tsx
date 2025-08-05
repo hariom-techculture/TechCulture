@@ -66,7 +66,7 @@ export function Navigation() {
   }, [collapsed, pathname])
 
   return (
-<nav
+    <nav
       className={`fixed z-50 w-full flex justify-between items-center px-10 transition-all duration-500 ${
         scrolled ? "top-2" : "top-4"
       }`}
@@ -78,9 +78,9 @@ export function Navigation() {
       {/* Desktop Ribbon Nav */}
       <div
         className={`
-          hidden lg:flex items-center justify-center
+          hidden lg:flex items-center justify-center relative
           transition-all duration-700 ease-in-out
-          rounded-full px-6 py-3 glass-nav relative z-40 overflow-visible
+          rounded-full px-6 py-3 glass-nav z-40 overflow-visible 
           border border-white/20 dark:border-white/10 shadow-2xl
           ${scrolled ? "backdrop-blur-xl bg-white/60 dark:bg-black/10" : "backdrop-blur-md bg-white/60 dark:bg-black/5"}
         `}
@@ -90,15 +90,21 @@ export function Navigation() {
           minWidth: "64px"
         }}
       >
-        {/* Measured Inner Content */}
+        {/* Toggle Button - Always positioned at center when collapsed */}
+        
+
+        {/* Navigation Content */}
         <div
           ref={navRef}
-          className={`flex items-center transition-all duration-500 ease-in-out gap-6 ${
+          className={`flex items-center transition-all duration-500 ease-in-out  gap-6 ${
             collapsed ? "opacity-0 translate-x-10 pointer-events-none" : "opacity-100 translate-x-0"
           }`}
-          style={{ whiteSpace: "nowrap" }}
+          style={{ 
+            whiteSpace: "nowrap",
+            
+          }}
         >
-          <div className="flex items-center space-x-6 relative">
+          <div className="flex items-center space-x-6 ">
             {navItems.map((item) => (
               item.dropdown ? (
                 <div
@@ -152,17 +158,13 @@ export function Navigation() {
           </div>
           <ThemeToggle />
         </div>
-
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setCollapsed(!collapsed)}
-          className={`transition-transform duration-500
-            h-9 w-9 glass-card hover:glass-hover rounded-full
-            z-10 ${collapsed ? "rotate-180" : "rotate-0"}
-          `}
+          className={`h-9 w-9 glass-card hover:glass-hover rounded-full z-20 transition-all duration-300  `}
         >
-          <X className="h-4 w-4" />
+          {collapsed ? <Menu className="h-4 w-4" /> : <X className="h-4 w-4" />}
         </Button>
       </div>
 

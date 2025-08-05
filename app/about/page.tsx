@@ -101,10 +101,7 @@ export default function AboutPage() {
   return (
     <div className="">
       {/* Hero Section - About Our Company */}
-      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
-      {/* <div className="absolute inset-0 -z-10 w-full top-0 left-0">
-          <img className="w-full h-[30%]" src="./about.jpg" alt="" />
-      </div> */}
+      {/* <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
 
         <div className="container mx-auto ">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -158,7 +155,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 
-                {/* Testimonial Card */}
+                
                 <div className="absolute -bottom-8 -right-8 bg-orange-500 text-white p-6 rounded-lg max-w-xs">
                   <p className="text-sm mb-3">"TechCulture has always helped our organization with precise geospatial solutions."</p>
                   <p className="font-semibold">- Government Department</p>
@@ -168,7 +165,23 @@ export default function AboutPage() {
             </AnimatedSection>
           </div>
         </div>
+      </section> */}
+
+      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+        <div className="container mx-auto text-center relative z-10">
+          <AnimatedSection>
+            <div className="max-w-5xl mx-auto">
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
+              About Our <span className="text-gradient">Company</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
+              TechCulture Solutions Private Limited is a leading provider of cutting-edge solutions in GIS, Remote Sensing, and Geospatial Technologies.
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
       </section>
+
 
       {/* Company Introduction */}
       <section className="py-20 px-6 bg-white">

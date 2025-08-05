@@ -37,6 +37,7 @@ import {
   Sparkles,
 } from "lucide-react"
 import { TestimonialsColumn } from "@/components/testimonials-columns-1"
+import { LogoCarousel, LogoColumn } from "@/components/logo-carousel"
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -82,7 +83,7 @@ export default function HomePage() {
       challenge: "Complex water and sewer network mapping across multiple cities requiring precise DGPS surveying and ABD drawings",
       solution: "Comprehensive topographical survey using DGPS technology and preparation of detailed As-Built Drawings (ABD) for infrastructure planning",
       result: "Successfully completed 8 major infrastructure projects across Rajasthan with 100% accuracy in utility mapping",
-      logo: "https://placehold.co/120x60/0052CC/ffffff?text=L&T",
+     id: 1, img: "https://placehold.co/120x60/0052CC/ffffff?text=L&T",
       category: "Infrastructure",
       impact: "8 Projects",
     },
@@ -91,7 +92,7 @@ export default function HomePage() {
       challenge: "Feasibility survey for nationwide broadband connectivity requiring DGPS and 360° videography across multiple states",
       solution: "Advanced DGPS surveying combined with 360° videography technology for comprehensive route planning and feasibility assessment",
       result: "Covered 2 major states (Punjab & Uttarakhand) with 95% accuracy in route optimization and infrastructure planning",
-      logo: "https://placehold.co/120x60/FF6B35/ffffff?text=BharatNet",
+     id: 1, img: "https://placehold.co/120x60/FF6B35/ffffff?text=BharatNet",
       category: "Government",
       impact: "2 States",
     },
@@ -100,7 +101,7 @@ export default function HomePage() {
       challenge: "Underground fiber survey and asset management along railway tracks requiring precise GPS mapping and ABD drawings",
       solution: "Comprehensive underground fiber survey using DGPS and EPL technology with mobile application for real-time data collection",
       result: "Successfully mapped 500+ km of railway track with 98% accuracy in underground utility detection",
-      logo: "https://placehold.co/120x60/1F4E79/ffffff?text=RailTel",
+     id: 1, img: "https://placehold.co/120x60/1F4E79/ffffff?text=RailTel",
       category: "Railway",
       impact: "500+ KM",
     },
@@ -185,16 +186,16 @@ const secondColumn = testimonials.slice(3, 6);
 const thirdColumn = testimonials.slice(6, 9);
 
 const partners = [
-  { name: "Planet", logo: "http://techculture.solutions/wp-content/uploads/2019/01/Planet.png" },
-  { name: "Parrot", logo: "http://techculture.solutions/wp-content/uploads/2019/01/Parrot.png" },
-  { name: "Leica", logo: "http://techculture.solutions/wp-content/uploads/2019/01/Leica.png" },
-  { name: "Images", logo: "http://techculture.solutions/wp-content/uploads/2019/01/images.png" },
-  { name: "ESRI", logo: "http://techculture.solutions/wp-content/uploads/2019/01/ESRI.png" },
-  { name: "Erdas", logo: "http://techculture.solutions/wp-content/uploads/2019/01/Erdas.png" },
-  { name: "DJI", logo: "http://techculture.solutions/wp-content/uploads/2019/01/DJI_logo.png" },
-  { name: "DigitalGlobe", logo: "http://techculture.solutions/wp-content/uploads/2019/01/DigitalGlobe-White-Logo.png" },
-  { name: "DG", logo: "http://techculture.solutions/wp-content/uploads/2019/01/DG.png" },
-  { name: "Airbus", logo: "http://techculture.solutions/wp-content/uploads/2019/01/Airbus.png" },
+  { name: "Planet", id: 1, img: "http://techculture.solutions/wp-content/uploads/2019/01/Planet.png" },
+  { name: "Parrot", id: 2, img: "http://techculture.solutions/wp-content/uploads/2019/01/Parrot.png" },
+  { name: "Leica", id: 3, img: "http://techculture.solutions/wp-content/uploads/2019/01/Leica.png" },
+  { name: "Images", id: 4, img: "http://techculture.solutions/wp-content/uploads/2019/01/images.png" },
+  { name: "ESRI", id: 5, img: "http://techculture.solutions/wp-content/uploads/2019/01/ESRI.png" },
+  { name: "Erdas", id: 6, img: "http://techculture.solutions/wp-content/uploads/2019/01/Erdas.png" },
+  { name: "DJI", id: 7, img: "http://techculture.solutions/wp-content/uploads/2019/01/DJI_logo.png" },
+  { name: "DigitalGlobe", id: 8, img: "http://techculture.solutions/wp-content/uploads/2019/01/DigitalGlobe-White-Logo.png" },
+  { name: "DG", id: 9, img: "http://techculture.solutions/wp-content/uploads/2019/01/DG.png" },
+  { name: "Airbus", id: 10, img: "http://techculture.solutions/wp-content/uploads/2019/01/Airbus.png" },
 ];
   // const stats = [
   //   { number: "500+", label: "Projects Delivered", icon: <Target className="w-6 h-6" /> },
@@ -208,12 +209,12 @@ const partners = [
   // const thirdColumn = testimonials.slice(0, 3)
 
   // const partners = [
-  //   { name: "Microsoft", logo: "https://placehold.co/120x60/0078D4/ffffff?text=Microsoft" },
-  //   { name: "Oracle", logo: "https://placehold.co/120x60/F80000/ffffff?text=Oracle" },
-  //   { name: "AWS", logo: "https://placehold.co/120x60/FF9900/ffffff?text=AWS" },
-  //   { name: "Google Cloud", logo: "https://placehold.co/120x60/4285F4/ffffff?text=Google" },
-  //   { name: "IBM", logo: "https://placehold.co/120x60/0066CC/ffffff?text=IBM" },
-  //   { name: "SAP", logo: "https://placehold.co/120x60/003366/ffffff?text=SAP" },
+  //   { name: "Microsoft", id: 1, img: "https://placehold.co/120x60/0078D4/ffffff?text=Microsoft" },
+  //   { name: "Oracle", id: 1, img: "https://placehold.co/120x60/F80000/ffffff?text=Oracle" },
+  //   { name: "AWS", id: 1, img: "https://placehold.co/120x60/FF9900/ffffff?text=AWS" },
+  //   { name: "Google Cloud", id: 1, img: "https://placehold.co/120x60/4285F4/ffffff?text=Google" },
+  //   { name: "IBM", id: 1, img: "https://placehold.co/120x60/0066CC/ffffff?text=IBM" },
+  //   { name: "SAP", id: 1, img: "https://placehold.co/120x60/003366/ffffff?text=SAP" },
   // ]
 
   return (
@@ -487,7 +488,7 @@ const partners = [
               </p>
             </div>
           </AnimatedSection>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-center">
+          {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-center">
             {partners.map((partner, index) => (
               <AnimatedSection key={index} delay={index * 100} animation="fadeInUp">
                 <div className="glass-card glass-hover p-6 rounded-2xl flex items-center justify-center h-28 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 contain-content">
@@ -501,7 +502,10 @@ const partners = [
                 </div>
               </AnimatedSection>
             ))}
-          </div>
+          </div> */}
+          
+            <LogoCarousel columnCount={5} logos={partners} />
+          
         </div>
       </section>
 

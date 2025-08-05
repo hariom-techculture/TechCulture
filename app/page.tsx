@@ -529,16 +529,7 @@ const partners = [
             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
               Let's discuss how our geospatial solutions can streamline your operations, enhance data accuracy, and support informed decision-making.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8 py-4 text-lg font-semibold bg-white text-gray-900 hover:bg-gray-100 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                Get Started Today
-                <Rocket className="w-5 h-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg font-semibold border-white text-white hover:bg-white hover:text-gray-900 rounded-full transition-all duration-300">
-                Schedule a Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </div>
+            
           </AnimatedSection>
         </div>
       </section>

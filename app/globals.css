@@ -240,3 +240,68 @@ html {
 .dark .glow {
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
 }
+
+/* Gallery specific styles */
+.gallery-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+/* 
+.gallery-item {
+  @apply relative overflow-hidden rounded-2xl bg-card shadow-lg hover:shadow-2xl transition-all duration-500 ;
+} */
+
+/* .gallery-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+} */
+
+.video-thumbnail {
+  @apply relative aspect-video overflow-hidden;
+}
+
+/* .video-play-button {
+  @apply absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+} */
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Modern glassmorphism effects */
+.glass-modal {
+  @apply backdrop-blur-2xl bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
+}
+
+/* Smooth image loading */
+.gallery-image {
+  @apply transition-all duration-700 ease-out;
+}
+
+.gallery-image:hover {
+  @apply scale-110;
+}
+
+/* Navigation dropdown styles */
+.nav-dropdown {
+  @apply absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-600;
+  z-index: 9999 !important;
+}
+
+.nav-dropdown.visible {
+  @apply opacity-100 visible translate-y-0;
+}
+
+.nav-dropdown.hidden {
+  @apply opacity-0 invisible -translate-y-2;
+}

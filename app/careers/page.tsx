@@ -191,27 +191,26 @@ export default function CareersPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        <ParallaxSection speed={0.3} className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
-        </ParallaxSection>
+      <section className="relative py-20 overflow-hidden pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+        <div className="absolute inset-0">
+          <Image fill alt="careers-banner" className="object-cover" src="/contact-banner.png" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+        </div>
 
-        <div className="container mx-auto text-center relative z-10">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
-                Join Our <span className="text-gradient">Team</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
-                Build the future of technology with us. Discover exciting career opportunities and be part of a team
-                that's transforming businesses worldwide.
-              </p>
-              <Button size="lg" className="btn-primary px-8 py-4 text-lg font-semibold rounded-full" asChild>
-                <Link href="#open-positions">
-                  View Open Positions <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </Button>
-            </div>
+        <div className="relative container mx-auto text-center">
+          <AnimatedSection animation="fadeInUp" delay={0}>
+            <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
+              Join Our <span className="text-gradient">Team</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Build the future of technology with us. Discover exciting career opportunities and be part of a team
+              that's transforming businesses worldwide.
+            </p>
+            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg font-semibold rounded-full" asChild>
+              <Link href="#open-positions">
+                View Open Positions <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
           </AnimatedSection>
         </div>
       </section>
@@ -393,7 +392,7 @@ export default function CareersPage() {
           <div className="space-y-6">
             {filteredJobs.map((job, index) => (
               <AnimatedSection key={job.id} delay={index * 100}>
-                <Card className="glass-card glass-hover">
+                <Card className="glass-card ">
                   <CardContent className="p-8">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                       <div className="flex-1">
@@ -477,35 +476,6 @@ export default function CareersPage() {
               </div>
             </AnimatedSection>
           )}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto text-center">
-          <AnimatedSection>
-            <Card className="glass-card glow max-w-4xl mx-auto">
-              <CardContent className="p-16">
-                <h2 className="text-5xl font-bold font-poppins text-foreground mb-8">
-                  Ready to Make an <span className="text-gradient">Impact</span>?
-                </h2>
-                <p className="text-xl text-muted-foreground mb-12 leading-relaxed max-w-2xl mx-auto">
-                  Don't see the perfect role? We're always looking for talented individuals to join our team. Send us
-                  your resume and let's explore opportunities together.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                  <Button size="lg" className="btn-primary px-10 py-4 text-lg font-semibold rounded-full" asChild>
-                    <Link href="/contact">
-                      Send Your Resume <ArrowRight className="ml-2 w-5 h-5" />
-                    </Link>
-                  </Button>
-                  <Button size="lg" className="btn-secondary px-10 py-4 text-lg font-semibold rounded-full" asChild>
-                    <Link href="/about">Learn About Us</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </AnimatedSection>
         </div>
       </section>
     </div>

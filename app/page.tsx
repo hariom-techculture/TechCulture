@@ -197,25 +197,7 @@ const partners = [
   { name: "DG", id: 9, img: "http://techculture.solutions/wp-content/uploads/2019/01/DG.png" },
   { name: "Airbus", id: 10, img: "http://techculture.solutions/wp-content/uploads/2019/01/Airbus.png" },
 ];
-  // const stats = [
-  //   { number: "500+", label: "Projects Delivered", icon: <Target className="w-6 h-6" /> },
-  //   { number: "98%", label: "Client Satisfaction", icon: <Star className="w-6 h-6" /> },
-  //   { number: "10+", label: "Years Experience", icon: <Clock className="w-6 h-6" /> },
-  //   { number: "50+", label: "Expert Team", icon: <Users className="w-6 h-6" /> },
-  // ]
 
-  // const firstColumn = testimonials.slice(0, 3)
-  // const secondColumn = testimonials.slice(0, 3)
-  // const thirdColumn = testimonials.slice(0, 3)
-
-  // const partners = [
-  //   { name: "Microsoft", id: 1, img: "https://placehold.co/120x60/0078D4/ffffff?text=Microsoft" },
-  //   { name: "Oracle", id: 1, img: "https://placehold.co/120x60/F80000/ffffff?text=Oracle" },
-  //   { name: "AWS", id: 1, img: "https://placehold.co/120x60/FF9900/ffffff?text=AWS" },
-  //   { name: "Google Cloud", id: 1, img: "https://placehold.co/120x60/4285F4/ffffff?text=Google" },
-  //   { name: "IBM", id: 1, img: "https://placehold.co/120x60/0066CC/ffffff?text=IBM" },
-  //   { name: "SAP", id: 1, img: "https://placehold.co/120x60/003366/ffffff?text=SAP" },
-  // ]
 
   return (
     <div className="min-h-screen">
@@ -223,18 +205,11 @@ const partners = [
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950">
         {/* Animated Background */}
         <div className="absolute inset-0 ">
-          {/* <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div className="absolute top-0 right-0 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div> */}
           <video className="-z-50 opacity-55" src="https://cdn.pixabay.com/video/2025/04/19/272860_large.mp4" autoPlay loop={true}  muted={true} ></video>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection animation="fadeInUp" delay={0}>
-            {/* <Badge variant="secondary" className="mb-8 px-4 py-2 text-sm font-medium bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Leading Geospatial Technology Solutions
-            </Badge> */}
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
               <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
@@ -250,46 +225,13 @@ const partners = [
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-black/90 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
               We deliver cutting-edge geospatial solutions that power smart cities, 
               optimize infrastructure, and drive digital transformation across industries.
             </p>
             
-            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Button size="lg" className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                Start Your Project
-                <Rocket className="w-5 h-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg font-semibold border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-all duration-300">
-                Watch Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </div> */}
           </AnimatedSection>
-
-          {/* Stats Preview */}
-          {/* <AnimatedSection animation="fadeInUp" delay={400}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection> */}
         </div>
-
-        {/* Scroll Indicator */}
-        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div> */}
       </section>
 
       {/* Modern Services Section */}
@@ -312,31 +254,49 @@ const partners = [
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <AnimatedSection key={index} delay={index * 100} animation="fadeInUp">
-                <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 h-full">
-                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.color}`}></div>
-                  <CardContent className="p-6 h-full flex flex-col">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <span className="text-white">{service.icon}</span>
+                <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
+                  {/* Colored border at top */}
+                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} z-20`}></div>
+                  
+                  {/* Service Image Background */}
+                  {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-60 z-10"></div> */}
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ 
+                    backgroundImage: `url(${service.image || '/contact-banner.png'})`,
+                    filter: 'brightness(0.9) contrast(1.1)'
+                  }}></div>
+                  
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+                  {/* <div className="absolute inset-0 flex flex-col justify-end transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div> */}
+                  
+                  <CardContent className="relative h-full p-6 flex flex-col z-10">
+                    <div className="flex items-start">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                        <span className="text-white">{service.icon}</span>
+                      </div>
+                      <h3 className="flex-1 text-lg font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
+                        {service.title}
+                      </h3>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <div className="space-y-2 mb-4">
-                      {service.features.slice(0, 2).map((feature, idx) => (
-                        <div key={idx} className="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                          <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
-                          {feature}
-                        </div>
-                      ))}
+                    
+                    <div className="mt-auto transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                      <p className="text-sm text-gray-300 mt-6 mb-4 leading-relaxed backdrop-blur-sm">
+                        {service.description}
+                      </p>
+                      <div className="space-y-2 mb-4">
+                        {service.features.slice(0, 2).map((feature, idx) => (
+                          <div key={idx} className="flex items-center text-xs text-gray-300">
+                            <CheckCircle className="w-3 h-3 text-green-400 mr-2 flex-shrink-0" />
+                            {feature}
+                          </div>
+                        ))}
+                      </div>
+                      <Button variant="outline" className="w-full text-sm font-medium bg-white/10 border-white/20 backdrop-blur-sm text-white hover:bg-white/20 transition-all" asChild>
+                        <Link href={service.href}>
+                          Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                        </Link>
+                      </Button>
                     </div>
-                    <Button variant="ghost" className="w-full text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 p-0 h-auto" asChild>
-                      <Link href={service.href}>
-                        Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                      </Link>
-                    </Button>
                   </CardContent>
                 </Card>
               </AnimatedSection>
@@ -365,39 +325,60 @@ const partners = [
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((study, index) => (
               <AnimatedSection key={index} delay={index * 150} animation="fadeInUp">
-                <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white dark:bg-gray-800 h-full">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-110 transition-transform duration-500"></div>
+                <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
+                  {/* Colored border at top */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-20"></div>
                   
-                  <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <Image 
+                      src={study.img || "/placeholder.jpg"} 
+                      alt={study.client}
+                      fill
+                      className="object-cover filter brightness-75"
+                    />
+                    {/* <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80"></div> */}
+                  </div>
+                  
+                  {/* Content Overlay with Glassmorphism */}
+                  <div className="absolute inset-0 backdrop-blur-sm bg-black/5 transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+                  
+                  <CardContent className="relative h-full p-6 flex flex-col z-10">
+                    {/* Always Visible Content */}
                     <div className="flex items-center justify-between mb-4">
-                      <Badge variant="outline" className="text-xs font-medium">
+                      <Badge variant="secondary" className="bg-white/10 text-white border-white/20 backdrop-blur-sm">
                         {study.category}
                       </Badge>
-                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                      <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                         {study.impact}
                       </div>
                     </div>
                     
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
+                    <h3 className="text-xl font-bold text-white mb-4 line-clamp-2">
                       {study.client}
                     </h3>
                     
-                    <div className="space-y-3 mb-4">
+                    {/* Content that slides up */}
+                    <div className="space-y-4 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                       <div>
-                        <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Challenge</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">{study.challenge}</p>
+                        <h4 className="text-sm font-semibold text-blue-300 uppercase tracking-wide mb-2">Challenge</h4>
+                        <p className="text-sm text-gray-200 leading-relaxed">{study.challenge}</p>
                       </div>
                       <div>
-                        <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Result</h4>
-                        <p className="text-sm font-semibold text-green-600 dark:text-green-400 line-clamp-2">{study.result}</p>
+                        <h4 className="text-sm font-semibold text-green-300 uppercase tracking-wide mb-2">Result</h4>
+                        <p className="text-sm text-gray-200 leading-relaxed">{study.result}</p>
                       </div>
+                      
+                      <Button 
+                        variant="outline" 
+                        className="w-full text-sm font-medium mt-4 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm transition-all" 
+                        asChild
+                      >
+                        <Link href="/projects">
+                          View Details <ArrowRight className="w-4 h-4 ml-1" />
+                        </Link>
+                      </Button>
                     </div>
-                    
-                    <Button variant="outline" className="w-full text-sm font-medium" asChild>
-                      <Link href="/projects">
-                        View Details <ArrowRight className="w-4 h-4 ml-1" />
-                      </Link>
-                    </Button>
                   </CardContent>
                 </Card>
               </AnimatedSection>
@@ -433,15 +414,25 @@ const partners = [
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <AnimatedSection key={index} delay={index * 100} animation="scaleIn">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
-                    <span className="text-white">{stat.icon}</span>
-                  </div>
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-blue-100 font-medium">
-                    {stat.label}
+                <div className="relative group overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 transition-all duration-500 hover:bg-white/15">
+                  {/* Colored border gradient at top */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-purple-400"></div>
+                  
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
+                      <span className="text-white text-2xl">{stat.icon}</span>
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-white mb-3 relative flex items-center justify-center">
+                      <span className="bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
+                        {stat.number}
+                      </span>
+                    </div>
+                    <div className="text-blue-100 font-medium text-lg text-center">
+                      {stat.label}
+                    </div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -488,21 +479,7 @@ const partners = [
               </p>
             </div>
           </AnimatedSection>
-          {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-center">
-            {partners.map((partner, index) => (
-              <AnimatedSection key={index} delay={index * 100} animation="fadeInUp">
-                <div className="glass-card glass-hover p-6 rounded-2xl flex items-center justify-center h-28 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 contain-content">
-                  <Image
-                    src={partner.logo || "/placeholder.svg"}
-                    alt={partner.name}
-                    width={120}
-                    height={40}
-                    className="opacity-80 hover:opacity-100 transition-opacity duration-300 object-contain"
-                  />
-                </div>
-              </AnimatedSection>
-            ))}
-          </div> */}
+         
           
             <LogoCarousel columnCount={5} logos={partners} />
           

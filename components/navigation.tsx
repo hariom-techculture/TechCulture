@@ -48,7 +48,7 @@ export function Navigation() {
         { href: "/media/videos", label: "Video Gallery" }
       ]
     },
-    { href: "/insights", label: "Insights" },
+    // { href: "/insights", label: "Insights" },
     { href: "/contact", label: "Contact" },
     { href: "/careers", label: "Careers" },
   ]
@@ -61,7 +61,7 @@ export function Navigation() {
   
   useEffect(() => {
     if (navRef.current) {
-      setExpandedWidth(navRef.current.scrollWidth + 100)
+      setExpandedWidth(navRef.current.scrollWidth + 100   )
     }
   }, [collapsed, pathname])
 
@@ -140,7 +140,7 @@ export function Navigation() {
                   
                   {/* Dropdown Menu */}
                   {activeDropdown === item.label && (
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 py-2 z-[9999]">
+                    <div className="absolute top-full left-0 mt-2 w-48 glass-nav dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 py-2 z-[9999]">
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.href}

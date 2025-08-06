@@ -242,20 +242,25 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
-      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+      <section className="relative  overflow-hidden pb-20 pt-30 px-6">
         {/* <ParallaxSection speed={0.3} className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
         </ParallaxSection> */}
+        <div className="absolute inset-0">
+          <Image fill alt="referenceImage" className="object-cover" src="./industry-banner.jpg" />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+        </div>
 
-        <div className="container mx-auto text-center relative z-10">
+        <div className="relative container mx-auto text-center">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
                 Our <span className="text-gradient">Projects</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
+              <p className="text-xl md:text-2xl mb-12 leading-relaxed text-gray-200">
                 Transforming infrastructure through innovative surveying, mapping, and technology solutions across India.
               </p>
             </div>

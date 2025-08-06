@@ -6,6 +6,7 @@ import { Play, Pause, Volume2, VolumeX, Maximize, X, Heart, Share2 } from "lucid
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { AnimatedSection } from "@/components/animated-section"
+import Image from "next/image"
 
 const videos = [
   { id: 1, title: "Company Overview 2024", thumbnail: "/placeholder.jpg", duration: "2:45", category: "Corporate",  height: 280 },
@@ -65,14 +66,27 @@ export default function VideoGallery() {
 
   return (
     <div className="min-h-screen ">
-      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+      
+      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image 
+            fill 
+            alt="referenceImage" 
+            className="object-cover brightness-75" 
+            src="/image-banner.png" 
+            priority
+            quality={100}
+          />
+          {/* Dark overlay with stronger gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 z-10"></div>
+        </div>
         <div className="container mx-auto text-center relative z-10">
           <AnimatedSection>
             <div className="max-w-5xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
               Video <span className="text-gradient">Gallery</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed">
               Watch our story unfold through engaging videos showcasing our innovations, culture, and success stories
               </p>
             </div>
@@ -83,7 +97,7 @@ export default function VideoGallery() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-4 mb-12 relative z-20"
         >
           {categories.map((category) => (
             <Button

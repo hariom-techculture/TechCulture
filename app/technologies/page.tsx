@@ -30,6 +30,7 @@ import {
   Smartphone
 } from "lucide-react"
 import { AnimatedSection } from "@/components/animated-section"
+import Image from "next/image"
 
 // AnimatedSection component for consistent animations
 // const AnimatedSection = ({ children, animation = "fadeInUp", delay = 0, className = "" }) => {
@@ -174,32 +175,27 @@ export default function TechnologiesPage() {
     <>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         {/* Hero Section */}
-        <section className="relative py-20 overflow-hidden pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
-          {/* <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          /> */}
+        <section className="relative  overflow-hidden pb-20 pt-30 px-6 ">
+          <div className="absolute inset-0">
+            <Image fill alt="referenceImage" className="object-cover" src="./technology-banner.jpg" />
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+          </div>
           
           <div className="relative container mx-auto text-center">
             <AnimatedSection animation="fadeInUp" delay={0}>
-              {/* <Badge variant="secondary" className="mb-8 px-6 py-3 text-sm font-medium bg-white/20 border-white/30 text-white hover:bg-white/30">
-                <Sparkles className="w-4 h-4 mr-2" />
-                Advanced GIS Technology Platform
-              </Badge> */}
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight ">
-                GIS Technology <span className="text-gradient">Solutions</span>
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
+                GIS Technology <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Solutions</span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed">
                 Comprehensive, web-based GIS solutions with embedded functionality for the full lifecycle of network management
               </p>
-              <p className="ttext-lg text-gray-500 dark:text-gray-400 mb-12 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto">
                 Leveraging cutting-edge technology to transform how organizations manage their spatial data and infrastructure
               </p>
             </AnimatedSection>
           </div>
-        </section>
+        </section> 
 
         {/* Platform Overview */}
         <section className="py-20 px-4 bg-white dark:bg-gray-900">

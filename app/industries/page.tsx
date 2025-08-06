@@ -228,16 +228,23 @@ export default function IndustriesPage() {
   ]
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
-      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
-        <div className="container mx-auto text-center relative z-10">
+      {/* <section className="pb-20 pt-30 overflow-hidden px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50"> */}
+       <section className="relative  overflow-hidden pb-20 pt-30 px-6 ">
+    <div className="absolute inset-0">
+                <Image fill alt="referenceImage" className="object-cover" src="./industry-banner.jpg" />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+              </div>
+                  
+        <div className="relative container mx-auto text-center">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
-                Our <span className="text-gradient">Industries</span>
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
+                Our <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Industries</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
+              <p className="text-gray-200 text-xl md:text-2xl mb-12 leading-relaxed">
                 Transforming diverse sectors through innovative surveying, mapping, and technology solutions across India.
               </p>
             </div>

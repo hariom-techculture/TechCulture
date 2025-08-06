@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { X, ZoomIn, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AnimatedSection } from "@/components/animated-section"
+import Image from "next/image"
 
 const photos = [
   { id: 1, src: "https://picsum.photos/200/300", title: "Tech Innovation", category: "Technology", likes: 24, height: 300 },
@@ -45,27 +46,39 @@ export default function PhotoGallery() {
   }
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
 
-<section className="pb-10 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
-        <div className="container mx-auto text-center relative z-10">
-          <AnimatedSection>
-            <div className="max-w-5xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
-              Photo <span className="text-gradient">Gallery</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
-              Explore our collection of moments, innovations, and achievements captured through the lens
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
+<section className="relative overflow-hidden pb-20 pt-30 px-6">
+  <div className="absolute inset-0">
+    <Image 
+      fill 
+      alt="referenceImage" 
+      className="object-cover brightness-75" 
+      src="/image-banner.png" 
+      priority
+      quality={100}
+    />
+    {/* Dark overlay with stronger gradient */}
+    <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 z-10"></div>
+  </div>
+  <div className="relative container mx-auto text-center z-20">
+    <AnimatedSection>
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
+          Photo <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Gallery</span>
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed">
+          Explore our collection of moments, innovations, and achievements captured through the lens
+        </p>
+      </div>
+    </AnimatedSection>
+  </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.1 }}
+    className="relative flex flex-wrap justify-center gap-4 mb-12 z-20"
         >
           {categories.map((category) => (
             <Button

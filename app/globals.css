@@ -166,7 +166,7 @@
   } */
 
   .text-gradient {
-    @apply bg-gradient-to-r from-sky-400 via-sky-600 to-black bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent;
   }
 
   .hero-pattern {

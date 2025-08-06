@@ -23,6 +23,7 @@ import {
   CheckCircle,
   Shield,
 } from "lucide-react"
+import Image from "next/image"
 
 const ServicePage = () => {
   const mainServices = [
@@ -109,6 +110,11 @@ const ServicePage = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+        <div className="absolute inset-0">
+                        <Image fill alt="referenceImage" className="object-cover" src="./services-banner.png" />
+                        {/* Dark overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+                      </div>
         {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div> */}
         {/* <div
         className="absolute inset-0 opacity-50"
@@ -120,17 +126,17 @@ const ServicePage = () => {
         
         <div className="relative container mx-auto text-center">
           <AnimatedSection animation="fadeInUp" delay={0}>
-            <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium">
+            {/* <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium">
               <Zap className="w-4 h-4 mr-2" />
               Geospatial Excellence
-            </Badge>
-            <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
+            </Badge> */}
+            <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
               What <span className="text-gradient">We Do</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl  dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed text-gray-300">
               Turning Geospatial Data into Intelligent Solutions
             </p>
-            <p className="text-lg text-gray-500 dark:text-gray-400 mb-12 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-200 dark:text-gray-400 mb-12 max-w-3xl mx-auto">
               TechCulture offers a full suite of GIS-powered services, combining hardware, software, and enterprise-level applications in one integrated platform.
             </p>
             {/* <Button size="lg" className="px-8 py-4 text-lg font-semibold">

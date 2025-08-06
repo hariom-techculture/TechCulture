@@ -157,18 +157,23 @@ export default function ContactPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50 relative overflow-hidden">
         {/* <ParallaxSection speed={0.3} className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
         </ParallaxSection> */}
+        <div className="absolute inset-0">
+                        <Image fill alt="referenceImage" className="object-cover" src="./contact-banner.png" />
+                        {/* Dark overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+                      </div>
 
         <div className="container mx-auto text-center relative z-10">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
                 Get In <span className="text-gradient">Touch</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed">
                 Ready to transform your business? Let's discuss your project and explore how we can help you achieve
                 your goals.
               </p>

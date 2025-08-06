@@ -170,14 +170,19 @@ export default function SurveyPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
+      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50 overflow-hidden relative">
+        <div className="absolute inset-0">
+          <Image fill alt="referenceImage" className="object-cover" src="https://images.pexels.com/photos/734428/pexels-photo-734428.jpeg" />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+        </div>
         <div className="container mx-auto text-center relative z-10">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
                 Survey <span className="text-gradient">Services</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
+              <p className="text-xl md:text-2xl mb-12 leading-relaxed text-gray-200">
                 Advanced surveying solutions using cutting-edge technology for precise data collection, mapping, and analysis across diverse terrains and applications.
               </p>
             </div>

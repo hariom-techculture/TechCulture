@@ -100,81 +100,21 @@ export default function AboutPage() {
 
   return (
     <div className="">
-      {/* Hero Section - About Our Company */}
-      {/* <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
-
-        <div className="container mx-auto ">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection animation="fadeInLeft">
-              <div>
-                <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                  About Our <span className="text-gradient">Company</span>
-                </h1>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  TechCulture Solutions Private Limited is a leading provider of cutting-edge solutions in GIS, 
-                  Remote Sensing, and Geospatial Technologies. With a strong foundation in innovation and precision, 
-                  we empower organizations across government and private sectors to make data-driven decisions through spatial intelligence.
-                </p>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  Our team of seasoned professionals brings expertise in GIS mapping, data analytics, 
-                  geospatial application development, and satellite imagery analysis. Whether it's urban planning, 
-                  utility management, or infrastructure development — we deliver scalable solutions aligned with your goals.
-                </p>
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold">
-                  Our History <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection animation="fadeInRight">
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-4">
-                    <div className="bg-orange-100 p-4 rounded-lg">
-                      <Star className="w-8 h-8 text-orange-500 mb-2" />
-                      <h3 className="font-semibold text-gray-900">Achievement</h3>
-                      <p className="text-sm text-gray-600">500+ Projects Completed</p>
-                    </div>
-                    <div className="bg-blue-100 p-4 rounded-lg">
-                      <MessageCircle className="w-8 h-8 text-blue-500 mb-2" />
-                      <h3 className="font-semibold text-gray-900">Live Support</h3>
-                      <p className="text-sm text-gray-600">24/7 Technical Assistance</p>
-                    </div>
-                  </div>
-                  <div className="space-y-4 pt-8">
-                    <div className="bg-green-100 p-4 rounded-lg">
-                      <ChefHat className="w-8 h-8 text-green-500 mb-2" />
-                      <h3 className="font-semibold text-gray-900">Today's Focus</h3>
-                      <p className="text-sm text-gray-600">Smart City Solutions</p>
-                    </div>
-                    <div className="bg-purple-100 p-4 rounded-lg">
-                      <Trophy className="w-8 h-8 text-purple-500 mb-2" />
-                      <h3 className="font-semibold text-gray-900">Best Provider</h3>
-                      <p className="text-sm text-gray-600">GIS Services 2023</p>
-                    </div>
-                  </div>
-                </div>
-                
-                
-                <div className="absolute -bottom-8 -right-8 bg-orange-500 text-white p-6 rounded-lg max-w-xs">
-                  <p className="text-sm mb-3">"TechCulture has always helped our organization with precise geospatial solutions."</p>
-                  <p className="font-semibold">- Government Department</p>
-                  <Heart className="absolute top-2 right-2 w-4 h-4" />
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50">
-        <div className="container mx-auto text-center relative z-10">
+      
+      <section className="pb-20 pt-30 px-6 bg-gradient-to-b from-sky-400 via-sky-200 to-sky-50 overflow-hidden relative">
+           <div className="absolute inset-0">
+                        <Image fill alt="referenceImage" className="object-cover" src="./about-banner.png" />
+                        {/* Dark overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+                      </div>
+                          
+        <div className=" container mx-auto text-center relative z-10">
           <AnimatedSection>
             <div className="max-w-5xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight">
+              <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
               About Our <span className="text-gradient">Company</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed">
               TechCulture Solutions Private Limited is a leading provider of cutting-edge solutions in GIS, Remote Sensing, and Geospatial Technologies.
               </p>
             </div>

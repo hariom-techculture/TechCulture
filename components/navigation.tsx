@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./theme-toggle"
 import { Menu, X, ChevronDown } from "lucide-react"
+import Image from "next/image"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -49,6 +50,7 @@ export function Navigation() {
       ]
     },
     // { href: "/insights", label: "Insights" },
+    { href: "/team", label: "Our Team" },
     { href: "/contact", label: "Contact" },
     { href: "/careers", label: "Careers" },
   ]
@@ -71,8 +73,15 @@ export function Navigation() {
         scrolled ? "top-2" : "top-4"
       }`}
     >
-      <Link href="/" className="text-xl font-bold text-foreground mr-8 z-50">
-        TechCulture <span className="text-primary">Solutions</span>
+      <Link href="/" className="text-xl font-bold mr-8 z-50">
+        <div className="relative w-[100px] h-[100px]"> {/* Adjust size as needed */}
+          <Image
+            src="/logo.png"
+            alt="logo"
+            fill
+            className="object-contain"
+          />
+        </div>
       </Link>
 
       {/* Desktop Ribbon Nav */}

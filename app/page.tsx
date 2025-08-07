@@ -38,6 +38,7 @@ import {
 } from "lucide-react"
 import { TestimonialsColumn } from "@/components/testimonials-columns-1"
 import { LogoCarousel, LogoColumn } from "@/components/logo-carousel"
+import { Marquee } from "@/components/marquee"
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -50,6 +51,7 @@ export default function HomePage() {
       features: ["Data Integration", "Real-time Monitoring", "Smart Decision Making", "Asset Management"],
       href: "/services",
       color: "from-blue-500 to-cyan-500",
+      image : "/services/gisplatform.png",
     },
     {
       icon: <Layers className="w-6 h-6" />,
@@ -58,6 +60,7 @@ export default function HomePage() {
       features: ["3D Modeling", "BIM Solutions", "AI Enhancement", "Smart Cities"],
       href: "/services",
       color: "from-purple-500 to-pink-500",
+      image : "/services/3dmodel.png",
     },
     {
       icon: <Building2 className="w-6 h-6" />,
@@ -66,14 +69,16 @@ export default function HomePage() {
       features: ["Infrastructure Planning", "Zoning Analysis", "Land Use Optimization", "Sustainable Growth"],
       href: "/services",
       color: "from-green-500 to-emerald-500",
+      image : "/services/urbanplan.png",
     },
     {
       icon: <Network className="w-6 h-6" />,
-      title: "Utility Asset Management",
+      title: "Network Asset Management for Utilities",
       description: "Tailored solutions for electricity, water, telecom, gas & heating industries with uptime resilience and mobile field app support.",
       features: ["Uptime Resilience", "Auto-generated Schematics", "Conflict-free Edits", "Mobile Field Apps"],
       href: "/services",
       color: "from-orange-500 to-red-500",
+      image : "/services/network.png",
     },
   ]
 
@@ -255,6 +260,7 @@ const partners = [
             {services.map((service, index) => (
               <AnimatedSection key={index} delay={index * 100} animation="fadeInUp">
                 <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10"/>
                   {/* Colored border at top */}
                   <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} z-20`}></div>
                   
@@ -392,7 +398,7 @@ const partners = [
       <div
             className="absolute inset-0 bg-fixed bg-center bg-repeat opacity-50"
             style={{
-            backgroundImage: `url("https://imgs.search.brave.com/lbjzsd5eP2_Of6sM-raUr9gsobGxtVHIJSCLqxIaSjU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE4/NTMzNzUwNC9waG90/by9hdXRvbWF0aW9u/LW9mLWJ1c2luZXNz/LW9yLXJvYm90aWMt/cHJvY2Vzcy1ycGEt/dGVjaG5vbG9neS10/cmFuc2Zlci1vZi1k/YXRhLWJldHdlZW4t/YXBwbGljYXRpb24u/anBnP2I9MSZzPTYx/Mng2MTImdz0wJms9/MjAmYz1XT1o3Q2Uz/R2pZLW5uQTFTdXNn/aVZQY0t3Y0I2VjN1/bkZzT3RCOHVnQVln/PQ")`,
+            backgroundImage: `url("/stats2.png")`,
             backgroundAttachment: 'fixed',
             backgroundRepeat : "no-repeat",
             objectFit: "cover",
@@ -413,7 +419,7 @@ const partners = [
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <AnimatedSection key={index} delay={index * 100} animation="scaleIn">
+              <AnimatedSection key={index} delay={index * 300} animation="scaleIn">
                 <div className="relative group overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 transition-all duration-500 hover:bg-white/15">
                   {/* Colored border gradient at top */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-purple-400"></div>
@@ -481,7 +487,26 @@ const partners = [
           </AnimatedSection>
          
           
-            <LogoCarousel columnCount={5} logos={partners} />
+            {/* <LogoCarousel columnCount={5} logos={partners} /> */}
+            <Marquee>
+              {partners.map((Logo, index) => (
+                <div
+                  key={index}
+                  className="relative min-h-[80px] w-[180px] mx-8 flex items-center justify-start"
+                >
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <Image
+                      src={Logo.img}
+                      alt={Logo.name}
+                      width={120}
+                      height={60}
+                      className="w-auto h-16 object-contain "
+                    />
+                    <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></span>
+                  </div>
+                </div>
+              ))}
+            </Marquee>
           
         </div>
       </section>
@@ -491,13 +516,14 @@ const partners = [
       <div
             className="absolute inset-0 bg-fixed bg-center bg-repeat opacity-50"
             style={{
-            backgroundImage: `url("https://imgs.search.brave.com/lbjzsd5eP2_Of6sM-raUr9gsobGxtVHIJSCLqxIaSjU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE4/NTMzNzUwNC9waG90/by9hdXRvbWF0aW9u/LW9mLWJ1c2luZXNz/LW9yLXJvYm90aWMt/cHJvY2Vzcy1ycGEt/dGVjaG5vbG9neS10/cmFuc2Zlci1vZi1k/YXRhLWJldHdlZW4t/YXBwbGljYXRpb24u/anBnP2I9MSZzPTYx/Mng2MTImdz0wJms9/MjAmYz1XT1o3Q2Uz/R2pZLW5uQTFTdXNn/aVZQY0t3Y0I2VjN1/bkZzT3RCOHVnQVln/PQ")`,
+            backgroundImage: `url("/home-banner-last.png")`,
             backgroundAttachment: 'fixed',
             backgroundRepeat : "no-repeat",
             objectFit: "cover",
             backgroundSize: "cover",
             }}
         ></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/20"></div>
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection animation="fadeInUp" delay={0}>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">

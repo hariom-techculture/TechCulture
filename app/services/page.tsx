@@ -46,6 +46,8 @@ const ServicePage = () => {
       ],
       color: "blue",
       delay: 0,
+      image : "/services/gisplatform.png",
+
     },
     {
       icon: <Layers className="w-12 h-12" />,
@@ -60,6 +62,8 @@ const ServicePage = () => {
       ],
       color: "purple",
       delay: 200,
+      image : "/services/3dmodel.png"
+
     },
     {
       icon: <Building2 className="w-12 h-12" />,
@@ -74,6 +78,8 @@ const ServicePage = () => {
       ],
       color: "green",
       delay: 400,
+      image : "/services/urbanplan.png"
+
     },
     {
       icon: <Network className="w-12 h-12" />,
@@ -88,6 +94,8 @@ const ServicePage = () => {
       ],
       color: "orange",
       delay: 600,
+      image : "/services/network.png"
+
     },
     {
       icon: <Code className="w-12 h-12" />,
@@ -102,6 +110,8 @@ const ServicePage = () => {
       ],
       color: "red",
       delay: 800,
+      image : "/services/gisapp.png"
+
     },
     {
       icon: <Database className="w-12 h-12" />,
@@ -116,6 +126,8 @@ const ServicePage = () => {
       ],
       color: "blue",
       delay: 1000,
+      image : "/services/geoprocessing.png"
+
     },
   ];
 
@@ -240,14 +252,14 @@ const ServicePage = () => {
                 >
                   <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
                     {/* Background Image */}
-                    {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-50 z-10"/> */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10"/>
                     <div
                       className={`absolute top-0 left-0 w-full h-1 bg-blue-500 z-20`}
                     ></div>
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                       style={{
-                        backgroundImage: `url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop)`,
+                        backgroundImage: `url(${service.image || '/contact-banner.png'})`,
                         filter: "brightness(0.9) contrast(1.1)",
                       }}
                     />

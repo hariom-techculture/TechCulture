@@ -125,7 +125,7 @@
 
 @layer components {
   .glass-card {
-    @apply backdrop-blur-xl bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl;
+    @apply backdrop-blur-xl bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-xl ;
   }
 
   .glass-hover {
@@ -304,4 +304,22 @@ html {
 
 .nav-dropdown.hidden {
   @apply opacity-0 invisible -translate-y-2;
+}
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 30s linear infinite reverse;
 }

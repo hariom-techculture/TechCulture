@@ -130,7 +130,7 @@ export default function ApplyPage() {
 
 
   return (
-    <div className="min-h-screen relative overflow-hidden  bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
+    <div className="min-h-screen relative overflow-hidden  ">
       {/* <div className="absolute inset-0 bg-[url('/apply2.png')] bg-cover bg-center"></div> */}
       <section className="relative pb-20 pt-30 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 overflow-hidden">
                <div className="absolute inset-0">

@@ -143,6 +143,7 @@ const ServicePage = () => {
         "User Training",
         "Ongoing Support",
       ],
+      image : ""
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
@@ -155,6 +156,7 @@ const ServicePage = () => {
         "Desktop Tools",
         "API Integration",
       ],
+      image : ""
     },
     {
       icon: <Compass className="w-8 h-8" />,
@@ -167,6 +169,7 @@ const ServicePage = () => {
         "LiDAR Scanning",
         "Data Processing",
       ],
+      image : ""
     },
   ];
 

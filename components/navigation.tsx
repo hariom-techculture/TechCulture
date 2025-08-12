@@ -36,11 +36,11 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/technologies", label: "Technologies" },
-    { href: "/industries", label: "Industries" },
-    { href: "/survey", label: "Survey" },
-    { href: "/services", label: "Services" },
-    { href: "/about", label: "About" },
+    // { href: "/technologies", label: "Technologies" },
+    // { href: "/industries", label: "Industries" },
+    // { href: "/survey", label: "Survey" },
+    { href: "/services", label: "Our Services" },
+    { href: "/about", label: "About Us" },
     { href: "/projects", label: "Projects" },
     { 
       label: "Media", 
@@ -51,7 +51,7 @@ export function Navigation() {
     },
     // { href: "/insights", label: "Insights" },
     { href: "/team", label: "Our Team" },
-    { href: "/contact", label: "Contact" },
+    { href: "/contact", label: "Contact Us" },
     { href: "/careers", label: "Careers" },
   ]
 

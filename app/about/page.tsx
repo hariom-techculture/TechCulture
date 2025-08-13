@@ -155,14 +155,14 @@ export default function AboutPage() {
                 </p>
                 
                 {/* Statistics */}
-                <div className="grid grid-cols-2 gap-6 mt-12">
+                {/* <div className="grid grid-cols-2 gap-6 mt-12">
                   {stats.map((stat, index) => (
                     <div key={index} className="text-center">
                       <div className="text-3xl font-bold text-orange-500 mb-2">{stat.number}</div>
                       <div className="text-sm text-gray-600">{stat.label}</div>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             </AnimatedSection>
           </div>

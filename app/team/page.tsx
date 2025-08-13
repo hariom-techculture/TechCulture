@@ -384,3 +384,354 @@ export default function TeamPage() {
     </div>
   )
 } 
+
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import { Button } from "@/components/ui/button";
+// import { ArrowRight } from "lucide-react";
+// import Image from "next/image";
+
+// const teamData = {
+//   management: [
+//     {
+//       name: "Shubham Garg",
+//       position: "Director",
+//       avatar: "https://i.pravatar.cc/400?u=shubham",
+//       bio: "Visionary leader with 15+ years in geospatial technology and business strategy",
+//     },
+//     {
+//       name: "Himanshu Garg",
+//       position: "Director",
+//       avatar: "https://i.pravatar.cc/400?u=himanshu",
+//       bio: "Expert in operations management and technology implementation across multiple domains",
+//     },
+//     {
+//       name: "Arpan Srivastava",
+//       position: "BDM",
+//       avatar: "https://i.pravatar.cc/400?u=arpan",
+//       bio: "Results-driven business development expert with strong client relationship skills",
+//     },
+//     {
+//       name: "Sarita Thakur",
+//       position: "HR Manager",
+//       avatar: "https://i.pravatar.cc/400?u=sarita",
+//       bio: "Human resources specialist focused on talent development and organizational growth",
+//     },
+//     {
+//       name: "Satyaveer Singh",
+//       position: "CTO",
+//       avatar: "https://i.pravatar.cc/400?u=satyaveer",
+//       bio: "Technology architect with deep expertise in GIS platforms and software development",
+//     },
+//     {
+//       name: "Pooja Verma",
+//       position: "Project Manager",
+//       avatar: "https://i.pravatar.cc/400?u=pooja",
+//       bio: "Experienced project manager ensuring seamless delivery of complex geospatial projects",
+//     },
+//   ],
+//   team: [
+//     {
+//       name: "Bikas Chanda",
+//       position: "Sr. GIS Engineer",
+//       avatar: "https://i.pravatar.cc/400?u=bikas",
+//       bio: "Senior GIS expert specializing in advanced spatial analysis and data modeling",
+//     },
+//     {
+//       name: "Sandeep Sagar",
+//       position: "Sr. GIS Engineer",
+//       avatar: "https://i.pravatar.cc/400?u=sandeep",
+//       bio: "GIS specialist with expertise in remote sensing and geospatial data processing",
+//     },
+//     {
+//       name: "Bhawan Sharma",
+//       position: "TL-GIS Engineer",
+//       avatar: "https://i.pravatar.cc/400?u=bhawan",
+//       bio: "Team leader with strong technical skills in GIS development and implementation",
+//     },
+//     {
+//       name: "Priyanka Kumari",
+//       position: "TL-GIS Engineer",
+//       avatar: "https://i.pravatar.cc/400?u=priyanka",
+//       bio: "Technical leader focused on innovative GIS solutions and team mentorship",
+//     },
+//     {
+//       name: "Bharti Singh",
+//       position: "Asst. Project Co-ordinator",
+//       avatar: "https://i.pravatar.cc/400?u=bharti",
+//       bio: "Project coordination specialist ensuring smooth workflow and client communication",
+//     },
+//     {
+//       name: "Bhawana Tiwari",
+//       position: "TL-GIS Engineer",
+//       avatar: "https://i.pravatar.cc/400?u=bhawana",
+//       bio: "GIS team leader with expertise in urban planning and infrastructure mapping",
+//     },
+//   ],
+//   field: [
+//     {
+//       name: "Krishanu Das",
+//       position: "TL-DGPS",
+//       avatar: "https://i.pravatar.cc/400?u=krishanu",
+//       bio: "Field operations leader specializing in high-precision DGPS surveying and data collection",
+//     },
+//     {
+//       name: "Anup Mondal",
+//       position: "TL-Field Surveyor",
+//       avatar: "https://i.pravatar.cc/400?u=anup",
+//       bio: "Experienced field surveyor with expertise in topographical and infrastructure surveys",
+//     },
+//     {
+//       name: "Akash Rajpoot",
+//       position: "TL-Underground Utility Detection",
+//       avatar: "https://i.pravatar.cc/400?u=akash",
+//       bio: "Specialist in underground utility detection and subsurface infrastructure mapping",
+//     },
+//   ],
+// };
+
+// const allMembers = [
+//   ...teamData.management,
+//   ...teamData.team,
+//   ...teamData.field,
+// ];
+// // Mobile layout (2 columns)
+// const mobileColumnData = [
+//   {
+//     members: [allMembers[0], allMembers[2], allMembers[4], allMembers[6], allMembers[8], allMembers[10], allMembers[12], allMembers[14]],
+//     topGap: "pt-4",
+//   },
+//   {
+//     members: [allMembers[1], allMembers[3], allMembers[5], allMembers[7], allMembers[9], allMembers[11], allMembers[13]],
+//     topGap: "pt-16",
+//   },
+// ];
+
+// // Tablet layout (4 columns)
+// const tabletColumnData = [
+//   {
+//     members: [allMembers[0], allMembers[4], allMembers[8], allMembers[12]],
+//     topGap: "pt-8",
+//   },
+//   {
+//     members: [allMembers[1], allMembers[5], allMembers[9], allMembers[13]],
+//     topGap: "pt-0",
+//   },
+//   {
+//     members: [allMembers[2], allMembers[6], allMembers[10], allMembers[14]],
+//     topGap: "pt-16",
+//   },
+//   {
+//     members: [allMembers[3], allMembers[7], allMembers[11]],
+//     topGap: "pt-24",
+//   },
+// ];
+
+// // Desktop layout (7 columns - original)
+// const desktopColumnData = [
+//   {
+//     members: [allMembers[0], allMembers[1], allMembers[2]],
+//     topGap: "pt-24",
+//   },
+//   {
+//     members: [allMembers[3], allMembers[4]],
+//     topGap: "pt-0",
+//   },
+//   {
+//     members: [allMembers[5], allMembers[6]],
+//     topGap: "pt-32",
+//   },
+//   {
+//     members: [allMembers[7]],
+//     topGap: "pt-72",
+//   },
+//   {
+//     members: [allMembers[8], allMembers[9]],
+//     topGap: "pt-32",
+//   },
+//   {
+//     members: [allMembers[10], allMembers[11]],
+//     topGap: "pt-0",
+//   },
+//   {
+//     members: [allMembers[12], allMembers[13], allMembers[14]],
+//     topGap: "pt-24",
+//   },
+// ];
+
+// export default function TeamSection() {
+//   const [hoveredMember, setHoveredMember] = useState<string | null>(null);
+//   const [screenSize, setScreenSize] = useState("desktop");
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       if (window.innerWidth < 640) {
+//         setScreenSize("mobile");
+//       } else if (window.innerWidth < 1024) {
+//         setScreenSize("tablet");
+//       } else {
+//         setScreenSize("desktop");
+//       }
+//     };
+
+//     handleResize();
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const getColumnData = () => {
+//     switch (screenSize) {
+//       case "mobile":
+//         return mobileColumnData;
+//       case "tablet":
+//         return tabletColumnData;
+//       default:
+//         return desktopColumnData;
+//     }
+//   };
+
+//   const getGridCols = () => {
+//     switch (screenSize) {
+//       case "mobile":
+//         return "grid-cols-2";
+//       case "tablet":
+//         return "grid-cols-4";
+//       default:
+//         return "grid-cols-7";
+//     }
+//   };
+
+//   const getImageSize = () => {
+//     switch (screenSize) {
+//       case "mobile":
+//         return "w-32 h-32 sm:w-36 sm:h-36";
+//       case "tablet":
+//         return "w-36 h-36 md:w-40 md:h-40";
+//       default:
+//         return "w-40 h-40 lg:w-50 lg:h-50";
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-white dark:bg-gray-950">
+//       <section className="relative pb-20 pt-30 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 overflow-hidden">
+//         <div className="absolute inset-0">
+//           <Image
+//             fill
+//             alt="referenceImage"
+//             className="object-cover"
+//             src="/team-banner.jpg"
+//           />
+//           {/* Dark overlay */}
+//           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+//         </div>
+//         <div className="relative z-10 max-w-7xl mx-auto text-center">
+//           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+//             <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+//               The People Behind
+//             </span>
+//             <br />
+//             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+//               Our Success
+//             </span>
+//           </h1>
+//           <p className="text-xl md:text-2xl text-gray-200 dark:text-gray-300 mb-12 max-w-4xl mx-auto">
+//             Meet the passionate professionals who bring innovation, expertise,
+//             and dedication to every project we undertake.
+//           </p>
+//         </div>
+//       </section>
+
+//       {/* Team Grid Section */}
+//       <section className="relative bg-gradient-to-br from-gray-50 to-white py-12 sm:py-16 lg:py-20 px-4 overflow-hidden">
+//         {/* Background decoration */}
+//         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.1),transparent_50%)]" />
+//         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,154,158,0.1),transparent_50%)]" />
+
+//         <div className="relative container mx-auto">
+//           {/* Team Grid */}
+//           <div
+//             className={`grid ${getGridCols()} gap-2 sm:gap-4 lg:gap-1 mb-16 sm:mb-20 lg:mb-24`}
+//           >
+//             {getColumnData().map((column, columnIndex) => (
+//               <div
+//                 key={columnIndex}
+//                 className={`flex flex-col items-center ${column.topGap}`}
+//               >
+//                 {column.members.map((member, memberIndex) => {
+//                   const isHovered = hoveredMember === member.name;
+
+//                   return (
+//                     <div
+//                       key={member.name}
+//                       className={`relative transition-all duration-500 ease-out cursor-pointer mb-4 sm:mb-6 transform hover:scale-110 sm:hover:scale-125`}
+//                       style={{
+//                         zIndex: isHovered ? 50 : 10,
+//                       }}
+//                       onMouseEnter={() => setHoveredMember(member.name)}
+//                       onMouseLeave={() => setHoveredMember(null)}
+//                     >
+//                       <div
+//                         className={`relative ${getImageSize()} transition-all duration-500`}
+//                       >
+//                         <img
+//                           src={member.avatar || "/placeholder.svg"}
+//                           alt={member.name}
+//                           className="w-full h-full object-cover rounded-2xl shadow-lg"
+//                         />
+
+//                         <div
+//                           className={`absolute inset-0 bg-black/70 rounded-2xl flex flex-col justify-center items-center text-white text-center p-2 sm:p-3 transition-opacity duration-300 ${
+//                             isHovered ? "opacity-100" : "opacity-0"
+//                           }`}
+//                         >
+//                           <h3 className="font-semibold text-xs sm:text-sm lg:text-base leading-tight mb-1">
+//                             {member.name}
+//                           </h3>
+//                           <p className="text-xs sm:text-sm leading-tight">
+//                             {member.position}
+//                           </p>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   );
+//                 })}
+//               </div>
+//             ))}
+//           </div>
+
+//           {/* Central content - moved to separate container to avoid overlap */}
+//           <div className="flex flex-col justify-center items-center text-center max-w-4xl mx-auto">
+//             <div className="mb-4">
+//               <span className="text-xs sm:text-sm font-medium text-gray-600 uppercase tracking-wider">
+//                 Testimonials
+//               </span>
+//             </div>
+
+//             <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+//               Trusted by leaders
+//             </h1>
+//             <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-gray-600 mb-6 lg:mb-8 leading-relaxed">
+//               from various industries
+//             </h2>
+
+//             <p className="text-sm sm:text-base lg:text-lg text-gray-700 mb-8 lg:mb-10 leading-relaxed max-w-lg mx-auto px-4">
+//               Learn why professionals trust our solutions to complete their
+//               customer journeys.
+//             </p>
+
+//             <Button
+//               size="lg"
+//               className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full font-medium group text-sm sm:text-base"
+//             >
+//               Read Success Stories
+//               <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+//             </Button>
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// }

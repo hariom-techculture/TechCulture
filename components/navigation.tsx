@@ -40,20 +40,20 @@ export function Navigation() {
     // { href: "/industries", label: "Industries" },
     // { href: "/survey", label: "Survey" },
     { href: "/services", label: "Our Services" },
-    { href: "/about", label: "About Us" },
     { href: "/projects", label: "Projects" },
-    { 
-      label: "Media", 
+    {
+      label: "Media",
       dropdown: [
         { href: "/media/photos", label: "Photo Gallery" },
-        { href: "/media/videos", label: "Video Gallery" }
-      ]
+        { href: "/media/videos", label: "Video Gallery" },
+      ],
     },
     // { href: "/insights", label: "Insights" },
     { href: "/team", label: "Our Team" },
+    { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
     { href: "/careers", label: "Careers" },
-  ]
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)

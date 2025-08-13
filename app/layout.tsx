@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const poppins = Poppins({
@@ -25,9 +26,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${poppins.variable} font-inter`} suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${poppins.variable} font-inter`}
+        suppressHydrationWarning
+      >
         <ThemeProvider>
           <div className="min-h-screen gradient-bg hero-pattern">
             <Navigation />
@@ -36,6 +42,25 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
       </body>
+
+      <Script
+        id="tawk-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function(){
+              var s1 = document.createElement("script"),
+                  s0 = document.getElementsByTagName("script")[0];
+              s1.async = true;
+              s1.src = 'https://embed.tawk.to/689b137d95ab891928c69566/1j2es892m';
+              s1.charset = 'UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1, s0);
+            })();
+          `,
+        }}
+      />
     </html>
-  )
+  );
 }

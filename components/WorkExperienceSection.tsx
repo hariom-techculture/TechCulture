@@ -35,7 +35,7 @@ const projectionConfig = {
 
 const WorkExperienceSection = () => {
   return (
-    <section className="py-24 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-blue-950/30 dark:to-indigo-950/50 relative overflow-hidden">
+    <section className="py-24 px-4 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">

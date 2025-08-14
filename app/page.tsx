@@ -282,7 +282,7 @@ const getStatusIcon = (status: string) => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/35"></div>
         </div>
 
-        <div className="relative z-10 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection animation="fadeInUp" delay={0}>
             <h1 className="mb-8 sm:mb-10 leading-[0.9] tracking-tight">
               <span
@@ -335,12 +335,12 @@ const getStatusIcon = (status: string) => {
       </section>
 
       {/* about us section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:from-gray-900 dark:to-gray-800">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
             {/* Image Section */}
             <AnimatedSection animation="fadeInLeft">
-              <div className="relative flex justify-center lg:justify-end">
+              <div className="relative flex ">
                 <Image
                   src="https://imgs.search.brave.com/BvEbduhIXv-32Rh0QUqg2f2sw8K7urlzjqJnsII5QQo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEzLzk3LzgxLzc3/LzM2MF9GXzEzOTc4/MTc3NTNfVGo4RVFa/NW13d0hpY0lKQkI1/aGEyVFI4SG1hdzNO/dGguanBn"
                   alt="TechCulture Solutions Team"
@@ -391,7 +391,7 @@ const getStatusIcon = (status: string) => {
       </section>
 
       {/* Modern Services Section */}
-      <section className="py-12 px-4 bg-white dark:bg-gray-950">
+      <section className="py-12 px-4 from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -505,7 +505,7 @@ const getStatusIcon = (status: string) => {
       </section>
 
       {/* Modern Success Stories Section */}
-      <section className="py-24 px-4 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+      <section className="py-24 px-4 bg-gradient-to-br bg-white dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
@@ -559,7 +559,7 @@ const getStatusIcon = (status: string) => {
 
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute bottom-6 left-0 right-0 p-6 text-white">
+                      <div className="absolute bottom-12 left-0 right-0 p-6 text-white">
                         <div className="space-y-4">
                           <p className="text-sm leading-relaxed opacity-90 line-clamp-3">
                             {project.description}
@@ -670,8 +670,7 @@ const getStatusIcon = (status: string) => {
         </div>
       </section> */}
 
-
-      <WorkExperienceSection/>
+      <WorkExperienceSection />
 
       {/* Modern Testimonials Section */}
       <section className="py-24 px-4 bg-white dark:bg-gray-950">
@@ -709,7 +708,7 @@ const getStatusIcon = (status: string) => {
         </div>
       </section>
       {/* Technology Partners Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-14">
@@ -758,17 +757,17 @@ const getStatusIcon = (status: string) => {
 
       {/* Modern Contact Form Section */}
 
-      <section className="py-12 px-4 relative overflow-hidden min-h-screen">
+      <section className="py-12 px-4 relative overflow-hidden min-h-screen bg-white">
         {/* Enhanced background with gradients */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-100/50 dark:from-slate-950 dark:via-blue-950/30 dark:to-purple-950/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br bg-white dark:from-slate-950 dark:via-blue-950/30 dark:to-purple-950/50"></div>
 
-        <div className="container mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center  h-full">
             {/* Left side with enhanced content */}
-            <AnimatedSection animation="fadeInLeft">
+            <AnimatedSection animation="fadeInLeft" className="h-full">
               <div className="relative h-full">
                 {/* Floating elements */}
-                <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-2xl rotate-12 filter blur-lg"></div>
+                {/* <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-2xl rotate-12 filter blur-lg"></div> */}
                 {/* <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full filter blur-md"></div> */}
 
                 <div className="relative z-10 mb-8">
@@ -829,7 +828,7 @@ const getStatusIcon = (status: string) => {
                   </div>
                 </div>
 
-                {/* Enhanced image container */}
+                {/* Enhanced image max-w-7xl */}
                 <div className="relative mt-12">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl filter blur-xl transform rotate-1"></div>
                   <Image
@@ -844,10 +843,10 @@ const getStatusIcon = (status: string) => {
             </AnimatedSection>
 
             {/* Right side with enhanced glass form */}
-            <AnimatedSection animation="fadeInRight">
+            <AnimatedSection animation="fadeInRight" className="h-full">
               <div className="relative h-full">
-                {/* Glass morphism container */}
-                <div className="relative p-8 md:p-10 rounded-3xl shadow-2xl border border-white/20 dark:border-white/10 overflow-hidden">
+                {/* Glass morphism max-w-7xl */}
+                <div className="relative p-8 md:p-10 rounded-3xl shadow-2xl border border-white/20 dark:border-white/10 overflow-hidden h-full">
                   {/* Glass background */}
                   <div className="absolute inset-0 bg-white/10 dark:bg-white/5 backdrop-blur-2xl"></div>
 
@@ -858,7 +857,7 @@ const getStatusIcon = (status: string) => {
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
 
                   {/* Form content */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 mt-5">
                     <div className="text-center mb-8">
                       <h3
                         className="text-2xl font-bold text-gray-900 dark:text-white mb-2"

@@ -254,7 +254,7 @@ export default function ProjectsPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
         </div>
 
-        <div className="relative container mx-auto text-center">
+        <div className="relative max-w-7xl mx-auto text-center">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
               <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
@@ -270,7 +270,7 @@ export default function ProjectsPage() {
 
       {/* Tab Navigation */}
       <section className="pt-16 px-6">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="flex justify-center mb-16">
               <div className="flex glass-card rounded-full p-2">
@@ -304,7 +304,7 @@ export default function ProjectsPage() {
 
       {/* Projects Grid */}
       <section className="pt-10 pb-16 px-6">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {(activeTab === "completed" ? completedProjects : ongoingProjects).map((project, index) => (
               <AnimatedSection key={project.id} delay={index * 100}>
@@ -376,7 +376,7 @@ export default function ProjectsPage() {
 
       {/* Stats Section */}
       <section className="py-10 px-6">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold font-poppins text-foreground mb-8">
@@ -410,7 +410,7 @@ export default function ProjectsPage() {
 
       {/* CTA Section */}
       {/* <section className="py-32 px-6">
-        <div className="container mx-auto text-center">
+        <div className="max-w-7xl mx-auto text-center">
           <AnimatedSection>
             <Card className="glass-card glow max-w-4xl mx-auto">
               <CardContent className="p-16">

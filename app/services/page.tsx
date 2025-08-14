@@ -212,7 +212,7 @@ const ServicePage = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
           </div>
 
-          <div className="relative container mx-auto text-center">
+          <div className="relative max-w-7xl mx-auto text-center">
             <AnimatedSection animation="fadeInUp" delay={0}>
               <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
                 What <span className="text-gradient">We Do</span>
@@ -231,14 +231,14 @@ const ServicePage = () => {
 
         {/* Main Services Grid */}
         <section className="py-20 px-4 bg-white dark:bg-gray-900">
-          <div className="container mx-auto">
+          <div className="max-w-7xl mx-auto">
             <AnimatedSection
               animation="fadeInUp"
               delay={0}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-blue-800 dark:from-white dark:to-blue-200 bg-clip-text text-transparent">
-                Our Core Services
+              <h2 className="text-4xl md:text-5xl font-bold mb-6  dark:from-white dark:to-blue-200 bg-clip-text ">
+                Our Core <span className="text-gradient">Services</span>
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 Comprehensive geospatial solutions designed to transform your
@@ -255,14 +255,16 @@ const ServicePage = () => {
                 >
                   <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
                     {/* Background Image */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10"/>
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10" />
                     <div
                       className={`absolute top-0 left-0 w-full h-1 bg-blue-500 z-20`}
                     ></div>
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                       style={{
-                        backgroundImage: `url(${service.image || '/contact-banner.png'})`,
+                        backgroundImage: `url(${
+                          service.image || "/contact-banner.png"
+                        })`,
                         filter: "brightness(0.9) contrast(1.1)",
                       }}
                     />
@@ -322,14 +324,14 @@ const ServicePage = () => {
 
         {/* Stats Section */}
         <section className="py-20 px-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
-          <div className="container mx-auto">
+          <div className="max-w-7xl mx-auto">
             <AnimatedSection
               animation="fadeInUp"
               delay={0}
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-                Why Choose TechCulture?
+                Why Choose <span className="text-gradient">TechCulture?</span>
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
                 Proven track record of delivering exceptional results
@@ -366,14 +368,14 @@ const ServicePage = () => {
 
         {/* Core Services Section */}
         <section className="py-20 px-4 bg-white dark:bg-gray-900">
-          <div className="container mx-auto">
+          <div className="max-w-7xl mx-auto">
             <AnimatedSection
               animation="fadeInUp"
               delay={0}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-blue-800 dark:from-white dark:to-blue-200 bg-clip-text text-transparent">
-                Our Service Portfolio
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r  dark:from-white dark:to-blue-200 bg-clip-text">
+                Our Service <span className="text-gradient">Portfolio</span>
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 At TechCulture Solutions Private Limited, we deliver modern
@@ -407,40 +409,40 @@ const ServicePage = () => {
 
                     {/* Content that slides up */}
                     {/* <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 z-10"> */}
-                      {/* Glass background */}
-                      <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 z-10" />
+                    {/* Glass background */}
+                    <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 z-10" />
 
-                      {/* Content */}
-                      <CardContent className="relative h-full p-6 flex flex-col z-10">
-                        <div className="flex items-start">
-                          <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white group-hover:scale-110 transition-transform duration-300">
-                            {service.icon}
-                          </div>
-                          <h3 className="flex-1 text-lg font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
-                            {service.title}
-                          </h3>
+                    {/* Content */}
+                    <CardContent className="relative h-full p-6 flex flex-col z-10">
+                      <div className="flex items-start">
+                        <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white group-hover:scale-110 transition-transform duration-300">
+                          {service.icon}
                         </div>
+                        <h3 className="flex-1 text-lg font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
+                          {service.title}
+                        </h3>
+                      </div>
 
-                        <div className="mt-auto transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 delay-100 pt-4">
-                          {/* <h3 className="text-2xl font-bold text-white">
+                      <div className="mt-auto transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 delay-100 pt-4">
+                        {/* <h3 className="text-2xl font-bold text-white">
                         {service.title}
                       </h3> */}
-                          <p className="text-gray-100 leading-relaxed transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            {service.description}
-                          </p>
-                          <div className="space-y-2 transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                            {service.features.map((feature, featureIndex) => (
-                              <div
-                                key={featureIndex}
-                                className="flex items-center text-sm text-gray-200"
-                              >
-                                <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
-                                {feature}
-                              </div>
-                            ))}
-                          </div>
+                        <p className="text-gray-100 leading-relaxed transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                          {service.description}
+                        </p>
+                        <div className="space-y-2 transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                          {service.features.map((feature, featureIndex) => (
+                            <div
+                              key={featureIndex}
+                              className="flex items-center text-sm text-gray-200"
+                            >
+                              <CheckCircle className="w-4 h-4 mr-3 text-green-400 flex-shrink-0" />
+                              {feature}
+                            </div>
+                          ))}
                         </div>
-                      </CardContent>
+                      </div>
+                    </CardContent>
                     {/* </div> */}
                   </Card>
                 </AnimatedSection>

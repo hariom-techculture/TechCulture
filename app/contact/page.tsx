@@ -119,7 +119,7 @@ export default function ContactPage() {
   if (isSubmitted) {
     return (
       <div className="pt-32 pb-20 px-6">
-        <div className="container mx-auto text-center">
+        <div className="max-w-7xl mx-auto text-center">
           <AnimatedSection>
             <Card className="glass-card glow max-w-2xl mx-auto">
               <CardContent className="p-16">
@@ -167,7 +167,7 @@ export default function ContactPage() {
                         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
                       </div>
 
-        <div className="container mx-auto text-center relative z-10">
+        <div className="max-w-7xl mx-auto text-center relative z-10">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
               <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
@@ -184,11 +184,11 @@ export default function ContactPage() {
 
       {/* Contact Form & Info */}
       <section className="py-32 px-6">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20">
             {/* Contact Form */}
             <AnimatedSection animation="fadeInLeft">
-              <Card className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl">
+              <Card className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl h-full">
                 <CardContent className="p-10">
                   <div className="mb-8">
                     <h2 className="text-3xl font-bold font-poppins text-foreground mb-4">
@@ -315,7 +315,7 @@ export default function ContactPage() {
                 <div className="grid sm:grid-cols-2 gap-6">
                   {contactInfo.map((info, index) => (
                     <Card key={index} className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl">
-                      <CardContent className="p-6">
+                      <CardContent className="py-4 px-6">
                         <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
                           <div className="text-primary">{info.icon}</div>
                         </div>
@@ -372,7 +372,7 @@ export default function ContactPage() {
 
       {/* Office Locations */}
       {/* <section className="py-10 px-6">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold font-poppins text-foreground mb-8">
@@ -428,7 +428,7 @@ export default function ContactPage() {
 
       {/* Map Section */}
       <section className="pb-10 px-6">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <Card className="glass-card p-0 overflow-hidden">
               <div className="relative h-96">

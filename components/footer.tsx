@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react"
 export function Footer() {
   return (
     <footer className="py-16 px-6 border-t border-border/20 bg-background/50">
-      <div className="container mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="text-2xl font-bold text-foreground mb-4">

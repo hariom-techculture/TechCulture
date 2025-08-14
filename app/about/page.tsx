@@ -108,7 +108,7 @@ export default function AboutPage() {
                         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
                       </div>
                           
-        <div className=" container mx-auto text-center relative z-10">
+        <div className=" max-w-7xl mx-auto text-center relative z-10">
           <AnimatedSection>
             <div className="max-w-5xl mx-auto">
               <h1 className="text-6xl md:text-8xl font-bold font-poppins mb-8 leading-tight text-white">
@@ -125,7 +125,7 @@ export default function AboutPage() {
 
       {/* Company Introduction */}
       <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection animation="fadeInLeft">
               <div className="relative">
@@ -171,7 +171,7 @@ export default function AboutPage() {
 
       {/* Vision Section */}
       <section className="py-20 px-6 bg-gray-50">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection animation="fadeInLeft">
               <div>
@@ -221,7 +221,7 @@ export default function AboutPage() {
 
       {/* Mission Section */}
       <section className="py-20 px-6">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-8">
@@ -285,7 +285,7 @@ export default function AboutPage() {
 
       {/* Services Overview */}
       <section className="py-20 px-6 bg-gray-50">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-8">
@@ -327,7 +327,7 @@ export default function AboutPage() {
         <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <AnimatedSection>
           <div className="text-center mb-52">
             <h2 className="text-5xl md:text-6xl font-bold mb-8">

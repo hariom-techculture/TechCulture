@@ -609,67 +609,6 @@ const getStatusIcon = (status: string) => {
         </div>
       </section>
 
-      {/* Modern Stats Section */}
-      {/* <section className="py-24 px-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-fixed bg-center bg-repeat opacity-50"
-          style={{
-            backgroundImage: `url("/stats2.png")`,
-            backgroundAttachment: "fixed",
-            backgroundRepeat: "no-repeat",
-            objectFit: "cover",
-            backgroundSize: "cover",
-          }}
-        ></div>
-        <div className="max-w-7xl mx-auto">
-          <AnimatedSection>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Trusted by{" "}
-                <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                  Industry Leaders
-                </span>
-              </h2>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-                Our track record speaks for itself. Here's what we've achieved
-                together.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <AnimatedSection
-                key={index}
-                delay={index * 300}
-                animation="scaleIn"
-              >
-                <div className="relative group overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 transition-all duration-500 hover:bg-white/15">
-                  
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-purple-400"></div>
-
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
-                      <span className="text-white text-2xl">{stat.icon}</span>
-                    </div>
-                    <div className="text-4xl md:text-5xl font-bold text-white mb-3 relative flex items-center justify-center">
-                      <span className="bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
-                        {stat.number}
-                      </span>
-                    </div>
-                    <div className="text-blue-100 font-medium text-lg text-center">
-                      {stat.label}
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       <WorkExperienceSection />
 
       {/* Modern Testimonials Section */}
@@ -806,26 +745,7 @@ const getStatusIcon = (status: string) => {
                   </p>
 
                   {/* Feature highlights */}
-                  <div className="mt-8 space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">
-                        24/7 Expert Support
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">
-                        Custom Solutions
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full"></div>
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">
-                        Enterprise Grade Security
-                      </span>
-                    </div>
-                  </div>
+                  
                 </div>
 
                 {/* Enhanced image max-w-7xl */}
@@ -887,25 +807,14 @@ const getStatusIcon = (status: string) => {
                         </div>
                         <div className="group">
                           <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 transition-colors group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400">
-                            Last Name
+                            Email Address
                           </label>
                           <input
-                            type="text"
+                            type="email"
                             className="w-full px-4 py-4 rounded-xl border border-white/30 dark:border-white/20 bg-white/20 dark:bg-white/10 backdrop-blur-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all duration-300 placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                            placeholder="Enter your last name"
+                            placeholder="your.email@company.com"
                           />
                         </div>
-                      </div>
-
-                      <div className="group">
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 transition-colors group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400">
-                          Email Address
-                        </label>
-                        <input
-                          type="email"
-                          className="w-full px-4 py-4 rounded-xl border border-white/30 dark:border-white/20 bg-white/20 dark:bg-white/10 backdrop-blur-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all duration-300 placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                          placeholder="your.email@company.com"
-                        />
                       </div>
 
                       <div className="group">

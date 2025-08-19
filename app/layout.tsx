@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Script from "next/script";
+import { SiteProvider} from "@/context/siteContext"
+
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const poppins = Poppins({
@@ -35,11 +37,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <div className="min-h-screen gradient-bg hero-pattern">
-            <Navigation />
-            <main>{children}</main>
-            <Footer />
-          </div>
+          <SiteProvider>
+            <div className="min-h-screen gradient-bg hero-pattern">
+              <Navigation />
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </SiteProvider>
         </ThemeProvider>
       </body>
 

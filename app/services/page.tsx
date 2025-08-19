@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -30,146 +30,100 @@ import {
   Shield,
 } from "lucide-react";
 import Image from "next/image";
+import { useSite } from "@/context/siteContext";
+import axios from "axios";
 
 const ServicePage = () => {
-  const mainServices = [
+  const [coreServices, setCoreServices] = React.useState<Service[]>([])
+  const [mainServices, setMainServices] = React.useState<Service[]>([])
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const {
+    serviceData,
+    setServiceData,
+  } = useSite();
+
+  interface Service {
+    _id?: string;
+    title?: string;
+    description?: string;
+    features?: string[];
+    image?: string;
+    category? : string;
+  }
+
+  
+
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      if (!serviceData) {
+        try {
+          const res = await axios.get(`${apiBaseUrl}/api/services`);
+          setServiceData(res.data.services);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      //filter according to the category if core added in the core otherwise main 
+      if(serviceData){
+        const tempCore = serviceData.filter(
+          (service: Service) => service.category === "core"
+        );
+        const tempMain = serviceData.filter(
+          (service: Service) => service.category === "main"
+        );
+
+        setCoreServices(tempCore);
+        setMainServices(tempMain);
+      }
+    };
+
+    fetchServiceData();
+  }, [serviceData, setServiceData]);
+
+
+
+  const coreServicesIcon = [
     {
       icon: <Globe className="w-12 h-12" />,
-      title: "Development of GIS Platforms",
-      description:
-        "We develop customized GIS platforms for data integration, mapping, and spatial analysis, enabling smart decision-making, real-time monitoring, and efficient management of assets, infrastructure, and urban planning operations.",
-      features: [
-        "Data Integration",
-        "Real-time Monitoring",
-        "Smart Decision Making",
-        "Asset Management",
-      ],
-      color: "blue",
-      delay: 0,
-      image : "/services/gisplatform.png",
-
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: <Layers className="w-12 h-12" />,
-      title: "3D Geospatial Modelling / BIM",
-      description:
-        "We deliver 3D geospatial models and BIM solutions using GIS, drone, and LiDAR data—enhanced with AI for smart cities, utility mapping, asset management, and data-driven infrastructure planning.",
-      features: [
-        "3D Modeling",
-        "BIM Solutions",
-        "AI Enhancement",
-        "Smart Cities",
-      ],
-      color: "purple",
+      color: "from-purple-500 to-pink-500",
       delay: 200,
-      image : "/services/3dmodel.png"
-
     },
     {
       icon: <Building2 className="w-12 h-12" />,
-      title: "Urban Planning and Development",
-      description:
-        "We support urban planning and development through GIS, 3D modeling, and AI, enabling smarter infrastructure, zoning, land use, and sustainable growth for cities and public agencies.",
-      features: [
-        "Infrastructure Planning",
-        "Zoning Analysis",
-        "Land Use Optimization",
-        "Sustainable Growth",
-      ],
-      color: "green",
+      color: "from-green-500 to-emerald-500",
       delay: 400,
-      image : "/services/urbanplan.png"
-
     },
     {
       icon: <Network className="w-12 h-12" />,
-      title: "Network Asset Management for Utilities",
-      description:
-        "Tailored solutions for electricity, water, telecom, gas & heating industries—delivering uptime resilience, auto-generated schematics, conflict-free edits, and mobile field app support.",
-      features: [
-        "Uptime Resilience",
-        "Auto-generated Schematics",
-        "Conflict-free Edits",
-        "Mobile Field Apps",
-      ],
-      color: "orange",
+      color: "from-orange-500 to-red-500",
       delay: 600,
-      image : "/services/network.png"
-
     },
     {
       icon: <Code className="w-12 h-12" />,
-      title: "Customized GIS App Development",
-      description:
-        "We develop custom GIS tools and apps for mapping, spatial analysis, real-time data collection, and smart infrastructure management.",
-      features: [
-        "Custom Tools",
-        "Spatial Analysis",
-        "Real-time Data",
-        "Smart Infrastructure",
-      ],
-      color: "red",
+      color: "from-red-500 to-yellow-500",
       delay: 800,
-      image : "/services/gisapp.png"
-
     },
     {
       icon: <Database className="w-12 h-12" />,
-      title: "Data Conversion & Geoprocessing",
-      description:
-        "Services include LiDAR processing, DEM/DTM generation, georeferencing, image preprocessing, digitization, and planimetric mapping.",
-      features: [
-        "LiDAR Processing",
-        "DEM/DTM Generation",
-        "Georeferencing",
-        "Planimetric Mapping",
-      ],
-      color: "blue",
+      color: "from-blue-500 to-indigo-500",
       delay: 1000,
-      image : "/services/geoprocessing.png"
-
     },
   ];
 
-  const coreServices = [
+  const mainServicesIcon = [
     {
       icon: <Map className="w-8 h-8" />,
-      title: "GIS Implementation",
-      description:
-        "Comprehensive GIS implementation services tailored to your specific industry needs and operational requirements.",
-      features: [
-        "System Architecture",
-        "Data Migration",
-        "User Training",
-        "Ongoing Support",
-      ],
-      image : ""
     },
     {
-      icon: <Smartphone className="w-8 h-8" />,
-      title: "GIS Tool/App Development",
-      description:
-        "We develop custom GIS tools and apps for mapping, spatial analysis, real-time data collection, and smart infrastructure management.",
-      features: [
-        "Mobile Applications",
-        "Web Platforms",
-        "Desktop Tools",
-        "API Integration",
-      ],
-      image : ""
+      icon: <Smartphone className="w-8 h-8" />, 
     },
     {
       icon: <Compass className="w-8 h-8" />,
-      title: "Field Surveying & Mapping",
-      description:
-        "Advanced field surveying and mapping services using cutting-edge technology for accurate data collection and analysis.",
-      features: [
-        "GPS Surveying",
-        "Drone Mapping",
-        "LiDAR Scanning",
-        "Data Processing",
-      ],
-      image : ""
     },
   ];
 
@@ -229,7 +183,7 @@ const ServicePage = () => {
           </div>
         </section>
 
-        {/* Main Services Grid */}
+        {/* Core Services Grid */}
         <section className="py-20 px-4 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto">
             <AnimatedSection
@@ -246,31 +200,33 @@ const ServicePage = () => {
               </p>
             </AnimatedSection>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {mainServices.map((service, index) => (
-                <AnimatedSection
-                  key={index}
-                  animation="fadeInUp"
-                  delay={service.delay}
-                >
-                  <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
-                    {/* Background Image */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10" />
-                    <div
-                      className={`absolute top-0 left-0 w-full h-1 bg-blue-500 z-20`}
-                    ></div>
-                    <div
-                      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                      style={{
-                        backgroundImage: `url(${
-                          service.image || "/contact-banner.png"
-                        })`,
-                        filter: "brightness(0.9) contrast(1.1)",
-                      }}
-                    />
+            {coreServices && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {coreServices.map((service, index) => (
+                  <AnimatedSection
+                    key={index}
+                    animation="fadeInUp"
+                    delay={coreServicesIcon[index].delay}
+                  >
+                    <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
+                      {/* Background Image */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10" />
+                      {/* upper border color */}
+                      <div
+                        className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${coreServicesIcon[index].color} z-30`}
+                      ></div>
+                      <div
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                        style={{
+                          backgroundImage: `url(${
+                            service.image || "/contact-banner.png"
+                          })`,
+                          filter: "brightness(0.9) contrast(1.1)",
+                        }}
+                      />
 
-                    {/* Icon at the top */}
-                    {/* <div className="absolute top-4 left-4 z-20 flex items-center justify-center gap-2 ">
+                      {/* Icon at the top */}
+                      {/* <div className="absolute top-4 left-4 z-20 flex items-center justify-center gap-2 ">
                     <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white group-hover:scale-110 transition-transform duration-300">
                       {service.icon}
                     </div>
@@ -279,46 +235,49 @@ const ServicePage = () => {
                       </h3>
                   </div> */}
 
-                    {/* Content that slides up */}
-                    {/* <div className="absolute inset-0 flex flex-col justify-end transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out"> */}
-                    {/* Glass background */}
-                    <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 z-10" />
+                      {/* Content that slides up */}
+                      {/* <div className="absolute inset-0 flex flex-col justify-end transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out"> */}
+                      {/* Glass background */}
+                      <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 z-10" />
 
-                    {/* Content */}
-                    <CardContent className="relative h-full p-6 flex flex-col z-10">
-                      <div className="flex items-start">
-                        <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white group-hover:scale-110 transition-transform duration-300">
-                          {service.icon}
+                      {/* Content */}
+                      <CardContent className="relative h-full p-6 flex flex-col z-10">
+                        <div className="flex items-start">
+                          <div
+                            className={`p-3 rounded-xl bg-gradient-to-r ${coreServicesIcon[index].color} text-white group-hover:scale-110 transition-transform duration-300`}
+                          >
+                            {coreServicesIcon[index].icon}
+                          </div>
+                          <h3 className="flex-1 text-xl font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
+                            {service.title}
+                          </h3>
                         </div>
-                        <h3 className="flex-1 text-xl font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
-                          {service.title}
-                        </h3>
-                      </div>
-                      {/* <h3 className="text-2xl font-bold text-white">
+                        {/* <h3 className="text-2xl font-bold text-white">
                         {service.title}
                       </h3> */}
-                      <div className="mt-auto transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 delay-100 pt-4">
-                        <p className="text-gray-100 leading-relaxed transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                          {service.description}
-                        </p>
-                        <div className="space-y-2 transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                          {service.features.map((feature, featureIndex) => (
-                            <div
-                              key={featureIndex}
-                              className="flex items-center text-sm text-gray-200"
-                            >
-                              <CheckCircle className="w-4 h-4 mr-2 text-green-400" />
-                              {feature}
-                            </div>
-                          ))}
+                        <div className="mt-auto transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 delay-100 pt-4">
+                          <p className="text-gray-100 leading-relaxed transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            {service.description}
+                          </p>
+                          <div className="space-y-2 transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                            {service.features.map((feature, featureIndex) => (
+                              <div
+                                key={featureIndex}
+                                className="flex items-center text-sm text-gray-200"
+                              >
+                                <CheckCircle className="w-4 h-4 mr-2 text-green-400" />
+                                {feature}
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    </CardContent>
-                    {/* </div> */}
-                  </Card>
-                </AnimatedSection>
-              ))}
-            </div>
+                      </CardContent>
+                      {/* </div> */}
+                    </Card>
+                  </AnimatedSection>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
@@ -366,7 +325,7 @@ const ServicePage = () => {
           </div>
         </section>
 
-        {/* Core Services Section */}
+        {/* main Services Section */}
         <section className="py-20 px-4 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto">
             <AnimatedSection
@@ -385,7 +344,7 @@ const ServicePage = () => {
             </AnimatedSection>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {coreServices.map((service, index) => (
+              {mainServices.map((service, index) => (
                 <AnimatedSection
                   key={index}
                   animation="fadeInUp"
@@ -400,7 +359,9 @@ const ServicePage = () => {
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                       style={{
-                        backgroundImage: `url(https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=1000&auto=format&fit=crop)`,
+                        backgroundImage: `url(${
+                          service.image || "/contact-banner.png"
+                        })`,
                         filter: "brightness(0.9) contrast(1.1)",
                       }}
                     />
@@ -416,7 +377,7 @@ const ServicePage = () => {
                     <CardContent className="relative h-full p-6 flex flex-col z-10">
                       <div className="flex items-start">
                         <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white group-hover:scale-110 transition-transform duration-300">
-                          {service.icon}
+                          {mainServicesIcon[index].icon}
                         </div>
                         <h3 className="flex-1 text-lg font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
                           {service.title}

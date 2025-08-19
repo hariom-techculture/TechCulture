@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { AnimatedSection } from "@/components/animated-section"
-import { ParallaxSection } from "@/components/parallax-section"
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { AnimatedSection } from "@/components/animated-section";
+import { ParallaxSection } from "@/components/parallax-section";
 import {
   ArrowRight,
   CheckCircle,
@@ -38,232 +38,203 @@ import {
   X,
   Building,
   Satellite,
-} from "lucide-react"
-import { TestimonialsColumn } from "@/components/testimonials-columns-1"
-import { LogoCarousel, LogoColumn } from "@/components/logo-carousel"
-import { Marquee } from "@/components/marquee"
-import WorkExperienceSection from "@/components/WorkExperienceSection"
+} from "lucide-react";
+import { TestimonialsColumn } from "@/components/testimonials-columns-1";
+import { Marquee } from "@/components/marquee";
+import WorkExperienceSection from "@/components/WorkExperienceSection";
+import { useSite } from "@/context/siteContext";
+import axios from "axios";
+
+interface Service {
+  _id?: string;
+  title?: string;
+  description?: string;
+  features?: string[];
+  image?: string;
+  category?: string;
+}
 
 export default function HomePage() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const [showCookieConsent, setShowCookieConsent] = useState(true)
-  const [showEnquiryPopup, setShowEnquiryPopup] = useState(false)
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [showCookieConsent, setShowCookieConsent] = useState(true);
+  const [showEnquiryPopup, setShowEnquiryPopup] = useState(false);
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const [slicedServiceData, setSlicedServiceData] = useState<Service[]>([]);
+  const [slicedProjectData, setSlicedProjectData] = useState([]);
+  const [enquiryForm, setEnquiryFrom] = useState({
+    name : "",
+    email : "",
+    phone: "",
+    message: "",
+  })
+  const {
+    projectData,
+    setProjectData,
+    serviceData,
+    setServiceData,
+    testimonialData,
+    setTestimonialData,
+    settingsData,
+    setSettingsData,
+  } = useSite();
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent')
+    async function fetchData() {
+      if (!settingsData) {
+        try {
+          const res = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/site-settings`
+          );
+          if (res.status === 200) {
+            setSettingsData(res.data.data);
+            console.log("im data in the page ", res.data.data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    fetchData();
+  }, [settingsData, setSettingsData]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!projectData) {
+        try {
+          const res = await axios.get(`${apiBaseUrl}/api/projects`);
+          setProjectData(res.data.projects);
+          console.log("Project data", res.data.projects);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      if (projectData) {
+        const slicedData = projectData.slice(0, 4);
+        console.log("project sliced data", slicedData);
+        setSlicedProjectData(slicedData);
+      }
+    };
+
+    fetchData();
+  }, [projectData, setProjectData]);
+
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      if (!serviceData) {
+        try {
+          const res = await axios.get(`${apiBaseUrl}/api/services`);
+          setServiceData(res.data.services);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      // Ensure serviceData sliced and can render only 4
+      if (serviceData) {
+        const slicedData = serviceData.slice(0, 4);
+        console.log("Service sliced data", slicedData);
+        setSlicedServiceData(slicedData);
+      }
+    };
+
+    fetchServiceData();
+  }, [serviceData, setServiceData]);
+
+  useEffect(() => {
+    const fetchTestimonialData = async () => {
+      if (!testimonialData) {
+        try {
+          const res = await axios.get(`${apiBaseUrl}/api/testimonials`);
+          setTestimonialData(res.data.testimonials);
+          console.log("Testimonial data", res.data.testimonials);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+
+    fetchTestimonialData();
+  }, [testimonialData, setTestimonialData]);
+
+  useEffect(() => {
+    const consent = localStorage.getItem("cookieConsent");
     if (consent) {
-      setShowCookieConsent(false)
+      setShowCookieConsent(false);
     }
 
     // Show enquiry popup after 45 seconds
     const timer = setTimeout(() => {
-      const hasSeenPopup = sessionStorage.getItem('hasSeenEnquiryPopup')
+      const hasSeenPopup = sessionStorage.getItem("hasSeenEnquiryPopup");
       if (!hasSeenPopup) {
-        setShowEnquiryPopup(true)
-        sessionStorage.setItem('hasSeenEnquiryPopup', 'true')
+        setShowEnquiryPopup(true);
+        sessionStorage.setItem("hasSeenEnquiryPopup", "true");
       }
-    }, 30000)
+    }, 30000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
-  const services = [
+  const servicesIcon = [
     {
       icon: <Globe className="w-6 h-6" />,
-      title: "GIS Platform Development",
-      description: "Custom GIS platforms for data integration, mapping, and spatial analysis enabling smart decision-making and real-time monitoring.",
-      features: ["Data Integration", "Real-time Monitoring", "Smart Decision Making", "Asset Management"],
-      href: "/services",
       color: "from-blue-500 to-cyan-500",
-      image : "/services/gisplatform.png",
     },
     {
       icon: <Layers className="w-6 h-6" />,
-      title: "3D Geospatial Modelling",
-      description: "3D geospatial models and BIM solutions using GIS, drone, and LiDAR data enhanced with AI for smart cities and infrastructure planning.",
-      features: ["3D Modeling", "BIM Solutions", "AI Enhancement", "Smart Cities"],
-      href: "/services",
       color: "from-purple-500 to-pink-500",
-      image : "/services/3dmodel.png",
     },
     {
       icon: <Building2 className="w-6 h-6" />,
-      title: "Urban Planning & Development",
-      description: "GIS, 3D modeling, and AI solutions for smarter infrastructure, zoning, land use, and sustainable growth for cities and public agencies.",
-      features: ["Infrastructure Planning", "Zoning Analysis", "Land Use Optimization", "Sustainable Growth"],
-      href: "/services",
       color: "from-green-500 to-emerald-500",
-      image : "/services/urbanplan.png",
     },
     {
       icon: <Network className="w-6 h-6" />,
-      title: "Network Asset Management for Utilities",
-      description: "Tailored solutions for electricity, water, telecom, gas & heating industries with uptime resilience and mobile field app support.",
-      features: ["Uptime Resilience", "Auto-generated Schematics", "Conflict-free Edits", "Mobile Field Apps"],
-      href: "/services",
       color: "from-orange-500 to-red-500",
-      image : "/services/network.png",
-    },
-  ]
-
-  const caseStudies = [
-    {
-      id: 1,
-      title: "Underground Utility Detection",
-      description:
-        "GPR EPL and DGPS survey at Chittapur - Depth Upto 3 Mtrs, Corridor Upto 10 Mtrs",
-      category: "Survey & Mapping",
-      location: "Chittapur",
-      image:
-        "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
-      icon: <Satellite className="w-6 h-6" />,
-      technologies: ["GPR", "EPL", "DGPS"],
-      status: "Completed",
-    },
-    {
-      id: 2,
-      title: "Door to Door Consumer Survey",
-      description: "Multiple ULBs of UP under JJM Project",
-      category: "Survey & Mapping",
-      location: "Uttar Pradesh",
-      image:
-        "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
-      icon: <Users className="w-6 h-6" />,
-      technologies: ["Mobile Survey", "GIS Mapping"],
-      status: "Completed",
-    },
-    {
-      id: 3,
-      title: "APT Survey",
-      description: "Multiple States (Tamil Nadu, Kerala, MP, NE)",
-      category: "Survey & Mapping",
-      location: "Pan India",
-      image:
-        "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
-      icon: <Globe className="w-6 h-6" />,
-      technologies: ["APT Survey", "Multi-State"],
-      status: "Completed",
-    },
-    {
-      id: 4,
-      title: "Topographical Survey - Ratangarh",
-      description:
-        "Water and Sewer Network using DGPS and preparation of ABD Drawings for L&T Constructions",
-      category: "Infrastructure",
-      location: "Ratangarh",
-      image:
-        "https://imgs.search.brave.com/YrW0F4EHHKu_RWV2Bxj8VOEKBM5PPADe8RMvvMTLJrQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC8yOS8wMi9w/aWxvdC1wcm9qZWN0/LXdvcmQtY29uY2Vw/dHMtYmFubmVyLXZl/Y3Rvci0yOTExMjkw/Mi5qcGc",
-      icon: <Building className="w-6 h-6" />,
-      technologies: ["DGPS", "ABD Drawings", "L&T"],
-      status: "Completed",
     },
   ];
 
-  const stats = [
-    { number: "500+", label: "Projects Delivered", icon: <Target className="w-6 h-6" /> },
-    { number: "50+", label: "Expert Team", icon: <Users className="w-6 h-6" /> },
-    { number: "98%", label: "Client Satisfaction", icon: <Award className="w-6 h-6" /> },
-    { number: "24/7", label: "Support Available", icon: <Shield className="w-6 h-6" /> },
-  ]
+  const firstColumn =
+    !testimonialData || testimonialData.length === 0
+      ? []
+      : testimonialData.slice(0, 3);
+  const secondColumn =
+    !testimonialData || testimonialData.length === 0
+      ? []
+      : testimonialData.slice(3, 6);
+  const thirdColumn =
+    !testimonialData || testimonialData.length === 0
+      ? []
+      : testimonialData.slice(0, 3);
 
-const testimonials = [
-  {
-    quote:
-      "TechCulture Solutions transformed our entire IT infrastructure. Their expertise and dedication are unmatched.",
-    author: "Sarah Johnson",
-    position: "CTO, Global Manufacturing Corp",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=sarahjohnson",
-  },
-  {
-    quote: "The GIS solution they developed revolutionized our urban planning process. Exceptional work!",
-    author: "Michael Chen",
-    position: "Director, Smart City Initiative",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=michaelchen",
-  },
-  {
-    quote: "From concept to deployment, their team delivered beyond our expectations. Highly recommended!",
-    author: "Emily Rodriguez",
-    position: "CEO, FinTech Startup",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=emilyrodriguez",
-  },
-  {
-    quote: "Their cloud migration strategy was seamless and efficient. We've seen a 40% improvement in operations.",
-    author: "David Lee",
-    position: "IT Manager, LogisticsPro Inc.",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=davidlee",
-  },
-  {
-    quote: "Excellent team with deep technical knowledge. Our app now runs faster and is more secure.",
-    author: "Priya Desai",
-    position: "Product Manager, EduTech Labs",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=priyadesai",
-  },
-  {
-    quote: "Their attention to detail and communication set them apart from other vendors we've worked with.",
-    author: "James Smith",
-    position: "Operations Director, RetailEdge",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=jamessmith",
-  },
-  {
-    quote: "Outstanding support and rapid delivery. We met all our project deadlines ahead of schedule.",
-    author: "Aisha Khan",
-    position: "Program Lead, HealthConnect",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=aishakhan",
-  },
-  {
-    quote: "We trusted them with our AI integration project, and the results exceeded expectations.",
-    author: "Liam Martinez",
-    position: "Chief Innovation Officer, AI Fusion Ltd.",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=liammartinez",
-  },
-  {
-    quote: "Their DevOps solution streamlined our deployment process and improved overall stability.",
-    author: "Natalie Wong",
-    position: "Lead Engineer, CodeCraft Systems",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/60?u=nataliewong",
-  },
-];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+    const handleInputChange = (e)=>{
+      setEnquiryFrom({
+        ...enquiryForm,
+        [e.target.name]: e.target.value,
+      });
+    }
 
-const partners = [
-  { name: "Planet", id: 1, img: "http://techculture.solutions/wp-content/uploads/2019/01/Planet.png" },
-  { name: "Parrot", id: 2, img: "http://techculture.solutions/wp-content/uploads/2019/01/Parrot.png" },
-  { name: "Leica", id: 3, img: "http://techculture.solutions/wp-content/uploads/2019/01/Leica.png" },
-  { name: "Images", id: 4, img: "http://techculture.solutions/wp-content/uploads/2019/01/images.png" },
-  { name: "ESRI", id: 5, img: "http://techculture.solutions/wp-content/uploads/2019/01/ESRI.png" },
-  { name: "Erdas", id: 6, img: "http://techculture.solutions/wp-content/uploads/2019/01/Erdas.png" },
-  { name: "DJI", id: 7, img: "http://techculture.solutions/wp-content/uploads/2019/01/DJI_logo.png" },
-  { name: "DigitalGlobe", id: 8, img: "http://techculture.solutions/wp-content/uploads/2019/01/DigitalGlobe-White-Logo.png" },
-  { name: "DG", id: 9, img: "http://techculture.solutions/wp-content/uploads/2019/01/DG.png" },
-  { name: "Airbus", id: 10, img: "http://techculture.solutions/wp-content/uploads/2019/01/Airbus.png" },
-];
-
-const getStatusColor = (status: string) => {
-  return status === "Completed"
-    ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
-    : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300";
-};
-
-const getStatusIcon = (status: string) => {
-  return status === "Completed" ? (
-    <CheckCircle className="w-4 h-4" />
-  ) : (
-    <Clock className="w-4 h-4" />
-  );
-};
-
+    const handleSubmit = async (e)=>{
+      try{
+        e.preventDefault();
+        const res = await axios.post(`${apiBaseUrl}/api/enquiries`, enquiryForm);
+        if (res.status === 201) {
+          alert("Enquiry submitted successfully!");
+          setEnquiryFrom({
+            name: "",
+            email: "",
+            phone: "",
+            message: "",
+          });
+          setShowEnquiryPopup(false);
+        } else {
+          alert("Failed to submit enquiry. Please try again.");
+        }
+      }
+      catch (error) {
+        console.error("Error submitting enquiry form:", error);
+      }
+    }
 
   return (
     <div className="min-h-screen">
@@ -362,17 +333,18 @@ const getStatusIcon = (status: string) => {
                 </h2>
 
                 <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                  We are a home to a variety of geospatial solutions worldwide
-                  for you to learn and have an opportunity to transform your
-                  business. Our platform is a celebration of technological
-                  diversity, bringing together GIS experts and technology
-                  enthusiasts.
+                  We are a leading geospatial technology company specializing in
+                  GIS, Remote Sensing, and Surveying Services. We deliver
+                  innovative spatial solutions that help clients transform
+                  location-based data into actionable insights.
                 </p>
 
                 <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                  Backed by a strong commitment to quality, transparency, and
-                  technological advancement, TechCulture continues to shape the
-                  digital transformation in geospatial services.
+                  Established with the vision to bring precision and
+                  intelligence to spatial decision-making, we have successfully
+                  delivered projects across government, infrastructure,
+                  utilities, and environmental sectors. Our team is driven by
+                  domain expertise, innovation, and a commitment to quality.
                 </p>
 
                 <Button
@@ -416,75 +388,78 @@ const getStatusIcon = (status: string) => {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <AnimatedSection
-                key={index}
-                delay={index * 100}
-                animation="fadeInUp"
-              >
-                <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10" />
-                  {/* Colored border at top */}
-                  <div
-                    className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} z-20`}
-                  ></div>
+            {serviceData &&
+              slicedServiceData.map((service, index) => (
+                <AnimatedSection
+                  key={index}
+                  delay={index * 100}
+                  animation="fadeInUp"
+                >
+                  <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10" />
+                    {/* Colored border at top */}
+                    <div
+                      className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${servicesIcon[index].color} z-20`}
+                    ></div>
 
-                  {/* Service Image Background */}
-                  {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-60 z-10"></div> */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                      backgroundImage: `url(${
-                        service.image || "/contact-banner.png"
-                      })`,
-                      filter: "brightness(0.9) contrast(1.1)",
-                    }}
-                  ></div>
+                    {/* Service Image Background */}
+                    {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-60 z-10"></div> */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `url(${
+                          service.image || "/contact-banner.png"
+                        })`,
+                        filter: "brightness(0.9) contrast(1.1)",
+                      }}
+                    ></div>
 
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform md:translate-y-[90%] md:group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform md:translate-y-[90%] md:group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
 
-                  <CardContent className="relative h-full p-6 flex flex-col z-10">
-                    <div className="flex items-start">
-                      <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}
-                      >
-                        <span className="text-white">{service.icon}</span>
+                    <CardContent className="relative h-full p-6 flex flex-col z-10">
+                      <div className="flex items-start">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-r ${servicesIcon[index].color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}
+                        >
+                          <span className="text-white">
+                            {servicesIcon[index].icon}
+                          </span>
+                        </div>
+                        <h3 className="flex-1 text-lg font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
+                          {service.title}
+                        </h3>
                       </div>
-                      <h3 className="flex-1 text-lg font-bold text-white ml-4 group-hover:text-blue-300 transition-colors">
-                        {service.title}
-                      </h3>
-                    </div>
 
-                    <div className="mt-auto transform md:translate-y-[100%] md:group-hover:translate-y-0 transition-transform duration-500 delay-100 translate-y-0 opacity-100 md:opacity-0 md:group-hover:opacity-100">
-                      <p className="text-sm text-gray-300 mt-6 mb-4 leading-relaxed backdrop-blur-sm">
-                        {service.description}
-                      </p>
-                      <div className="space-y-2 mb-4">
-                        {service.features.slice(0, 2).map((feature, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-center text-xs text-gray-300"
-                          >
-                            <CheckCircle className="w-3 h-3 text-green-400 mr-2 flex-shrink-0" />
-                            {feature}
-                          </div>
-                        ))}
+                      <div className="mt-auto transform md:translate-y-[100%] md:group-hover:translate-y-0 transition-transform duration-500 delay-100 translate-y-0 opacity-100 md:opacity-0 md:group-hover:opacity-100">
+                        <p className="text-sm text-gray-300 mt-6 mb-4 leading-relaxed backdrop-blur-sm">
+                          {service.description}
+                        </p>
+                        <div className="space-y-2 mb-4">
+                          {service.features.slice(0, 2).map((feature, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-center text-xs text-gray-300"
+                            >
+                              <CheckCircle className="w-3 h-3 text-green-400 mr-2 flex-shrink-0" />
+                              {feature}
+                            </div>
+                          ))}
+                        </div>
+                        <Button
+                          variant="outline"
+                          className="w-full text-sm font-medium bg-white/10 border-white/20 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
+                          asChild
+                        >
+                          <Link href={service.image}>
+                            Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                          </Link>
+                        </Button>
                       </div>
-                      <Button
-                        variant="outline"
-                        className="w-full text-sm font-medium bg-white/10 border-white/20 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
-                        asChild
-                      >
-                        <Link href={service.href}>
-                          Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
+              ))}
           </div>
           <AnimatedSection
             animation="fadeInUp"
@@ -529,70 +504,72 @@ const getStatusIcon = (status: string) => {
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {caseStudies.map((project, index) => (
-              <AnimatedSection key={project.id} delay={index * 100}>
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 ">
-                  <div className="relative h-80 overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
+            {projectData &&
+              slicedProjectData.map((project, index) => (
+                <AnimatedSection key={project._id} delay={index * 100}>
+                  <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 ">
+                    <div className="relative h-80 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 opacity-50 z-10" />
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
 
-                    {/* Category Badge - Top Left */}
-                    <div className="absolute top-4 left-4 z-10">
-                      <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
-                        <div className="text-white">{project.icon}</div>
-                        <span className="text-white text-sm font-medium">
-                          {project.category}
-                        </span>
+                      {/* Category Badge - Top Left */}
+                      <div className="absolute top-4 left-4 z-10">
+                        <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
+                          <div className="text-white">{project.icon}</div>
+                          <span className="text-white text-sm font-medium">
+                            {project.category}
+                          </span>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Project Title - Bottom Left */}
-                    <div className="absolute bottom-4 left-4 right-4 z-10">
-                      <h3 className="text-xl font-bold text-white drop-shadow-lg">
-                        {project.title}
-                      </h3>
-                    </div>
+                      {/* Project Title - Bottom Left */}
+                      <div className="absolute bottom-4 left-4 right-4 z-30">
+                        <h3 className=" text-xl font-bold text-white drop-shadow-lg ">
+                          {project.title}
+                        </h3>
+                      </div>
 
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute bottom-12 left-0 right-0 p-6 text-white">
-                        <div className="space-y-4">
-                          <p className="text-sm leading-relaxed opacity-90 line-clamp-3">
-                            {project.description}
-                          </p>
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                        <div className="absolute bottom-12 left-0 right-0 p-6 text-white z-20">
+                          <div className="space-y-4">
+                            <p className="text-sm leading-relaxed opacity-90 line-clamp-3">
+                              {project.description}
+                            </p>
 
-                          <div className="flex items-center space-x-2 text-sm opacity-80">
-                            <MapPin className="w-4 h-4" />
-                            <span>{project.location}</span>
-                          </div>
+                            <div className="flex items-center space-x-2 text-sm opacity-80">
+                              <MapPin className="w-4 h-4" />
+                              <span>{project.location}</span>
+                            </div>
 
-                          <div>
-                            <h4 className="font-semibold mb-2 text-sm">
-                              Technologies
-                            </h4>
-                            <div className="flex flex-wrap gap-1.5">
-                              {project.technologies.map((tech, idx) => (
-                                <Badge
-                                  key={idx}
-                                  variant="secondary"
-                                  className="text-xs bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30"
-                                >
-                                  {tech}
-                                </Badge>
-                              ))}
+                            <div>
+                              <h4 className="font-semibold mb-2 text-sm">
+                                Technologies
+                              </h4>
+                              <div className="flex flex-wrap gap-1.5">
+                                {project.technologies.map((tech, idx) => (
+                                  <Badge
+                                    key={idx}
+                                    variant="secondary"
+                                    className="text-xs bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30"
+                                  >
+                                    {tech}
+                                  </Badge>
+                                ))}
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </AnimatedSection>
-            ))}
+                </AnimatedSection>
+              ))}
           </div>
 
           <AnimatedSection animation="fadeInUp" className="mt-16 text-center">
@@ -672,25 +649,27 @@ const getStatusIcon = (status: string) => {
           </AnimatedSection>
 
           {/* <LogoCarousel columnCount={5} logos={partners} /> */}
-          <Marquee>
-            {partners.map((Logo, index) => (
-              <div
-                key={index}
-                className="relative min-h-[80px] w-[180px] mx-8 flex items-center justify-start"
-              >
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
-                    src={Logo.img}
-                    alt={Logo.name}
-                    width={120}
-                    height={60}
-                    className="w-auto h-16 object-contain "
-                  />
-                  <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></span>
+          {settingsData && (
+            <Marquee>
+              {settingsData.clients.map((Logo, index) => (
+                <div
+                  key={index}
+                  className="relative min-h-[80px] w-[180px] mx-8 flex items-center justify-start"
+                >
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <Image
+                      src={Logo}
+                      alt={Logo}
+                      width={120}
+                      height={60}
+                      className="w-auto h-16 object-contain "
+                    />
+                    <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </Marquee>
+              ))}
+            </Marquee>
+          )}
         </div>
       </section>
 
@@ -745,7 +724,6 @@ const getStatusIcon = (status: string) => {
                   </p>
 
                   {/* Feature highlights */}
-                  
                 </div>
 
                 {/* Enhanced image max-w-7xl */}
@@ -793,16 +771,20 @@ const getStatusIcon = (status: string) => {
                       </p>
                     </div>
 
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="group">
                           <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 transition-colors group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400">
-                            First Name
+                            Name
                           </label>
                           <input
                             type="text"
+                            id="name"
+                            name="name"
+                            value={enquiryForm.name}
+                            onChange={handleInputChange}
                             className="w-full px-4 py-4 rounded-xl border border-white/30 dark:border-white/20 bg-white/20 dark:bg-white/10 backdrop-blur-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all duration-300 placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                            placeholder="Enter your first name"
+                            placeholder="Enter your name"
                           />
                         </div>
                         <div className="group">
@@ -810,7 +792,11 @@ const getStatusIcon = (status: string) => {
                             Email Address
                           </label>
                           <input
+                            id="email"
+                            name="email"
                             type="email"
+                            value={enquiryForm.email}
+                            onChange={handleInputChange}
                             className="w-full px-4 py-4 rounded-xl border border-white/30 dark:border-white/20 bg-white/20 dark:bg-white/10 backdrop-blur-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all duration-300 placeholder:text-gray-500 dark:placeholder:text-gray-400"
                             placeholder="your.email@company.com"
                           />
@@ -823,6 +809,10 @@ const getStatusIcon = (status: string) => {
                         </label>
                         <input
                           type="tel"
+                          id="phone"
+                          name="phone"
+                          value={enquiryForm.phone}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-4 rounded-xl border border-white/30 dark:border-white/20 bg-white/20 dark:bg-white/10 backdrop-blur-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all duration-300 placeholder:text-gray-500 dark:placeholder:text-gray-400"
                           placeholder="+1 (555) 123-4567"
                         />
@@ -834,6 +824,10 @@ const getStatusIcon = (status: string) => {
                         </label>
                         <textarea
                           rows={5}
+                          id="message"
+                          name="message"
+                          value={enquiryForm.message}
+                          onChange={handleInputChange}
                           className="w-full px-4 py-4 rounded-xl border border-white/30 dark:border-white/20 bg-white/20 dark:bg-white/10 backdrop-blur-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all duration-300 placeholder:text-gray-500 dark:placeholder:text-gray-400 resize-none"
                           placeholder="Tell us about your project requirements, timeline, and goals..."
                         ></textarea>
@@ -989,16 +983,24 @@ const getStatusIcon = (status: string) => {
                 </p>
               </div>
 
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <input
                     type="text"
+                    name="name"
+                    id="name"
+                    onChange={handleInputChange}
+                    value={enquiryForm.name}
                     placeholder="Your Name"
                     className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:ring-2 focus:ring-blue-500 outline-none"
                   />
                 </div>
                 <div>
                   <input
+                    id="email"
+                    name="email"
+                    onChange={handleInputChange}
+                    value={enquiryForm.email}
                     type="email"
                     placeholder="Email Address"
                     className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:ring-2 focus:ring-blue-500 outline-none"
@@ -1006,6 +1008,10 @@ const getStatusIcon = (status: string) => {
                 </div>
                 <div>
                   <input
+                    id="phone"
+                    name="phone"
+                    onChange={handleInputChange}
+                    value={enquiryForm.phone}
                     type="tel"
                     placeholder="Phone Number"
                     className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:ring-2 focus:ring-blue-500 outline-none"
@@ -1013,12 +1019,16 @@ const getStatusIcon = (status: string) => {
                 </div>
                 <div>
                   <textarea
+                    id="message"
+                    name="message"
+                    onChange={handleInputChange}
+                    value={enquiryForm.message}
                     placeholder="How can we help you?"
                     rows={3}
                     className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:ring-2 focus:ring-blue-500 outline-none"
                   ></textarea>
                 </div>
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all duration-300">
+                <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all duration-300">
                   Send Message
                 </Button>
               </form>

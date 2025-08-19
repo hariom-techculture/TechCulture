@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -25,8 +25,64 @@ import {
   Calendar,
   Users,
 } from "lucide-react"
+import { useSite } from "@/context/siteContext"
+import axios from "axios"
 
 export default function ContactPage() {
+  const { settingsData, setSettingsData } = useSite();
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!settingsData) {
+        try {
+          const res = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/site-settings`
+          );
+          if (res.status === 200) {
+            setSettingsData(res.data.data);
+            console.log("im data ", res.data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      if(settingsData){
+        
+      }
+
+    }
+    fetchData();
+  }, [settingsData, setSettingsData]);
+
+  let contactInfo = [];
+  if(settingsData){ contactInfo = [
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "Phone",
+      details: [settingsData.contactNo],
+      description: "Mon-Fri 9AM-6PM IST",
+    },
+    {
+      icon: <Mail className="w-6 h-6" />,
+      title: "Email",
+      details: [settingsData.email],
+      description: "We'll respond within 24 hours",
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Office",
+      details: [settingsData.address],
+      description: "Visit us during business hours",
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Business Hours",
+      details: ["Monday - Friday: 9AM - 6PM", "Saturday: 10AM - 4PM"],
+      description: "Closed on Sundays",
+    },
+  ];}
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,8 +98,24 @@ export default function ContactPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try{
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/contacts`,
+        formData
+      );
+
+      console.log("helleo", response);
+
+      if (response.status === 201) {
+        console.log("Form submitted successfully")
+      } else {
+        console.error("Error submitting form", response.data)
+      }
+
+    }
+    catch(error){
+      console.log(error);
+    }
 
     setIsSubmitting(false)
     setIsSubmitted(true)
@@ -56,56 +128,9 @@ export default function ContactPage() {
     })
   }
 
-  const contactInfo = [
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: "Phone",
-      details: ["+91 9351294102", "1206541411"],
-      description: "Mon-Fri 9AM-6PM IST",
-    },
-    {
-      icon: <Mail className="w-6 h-6" />,
-      title: "Email",
-      details: ["info@techculture.solutions"],
-      description: "We'll respond within 24 hours",
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Office",
-      details: ["1207, 12th Floor, Rohit House,3 Tolstoy Road Connaught PlaceNew Delhi 110001", "B35/2, Lobe- 03, 5th Floor of Tower B, The Corenthum Building, Sector- 62 Noida Uttar Pradesh 201301"],
-      description: "Visit us during business hours",
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Business Hours",
-      details: ["Monday - Friday: 9AM - 6PM", "Saturday: 10AM - 4PM"],
-      description: "Closed on Sundays",
-    },
-  ]
+ 
 
-  // const offices = [
-  //   {
-  //     city: "Mumbai",
-  //     address: "123 Tech Street, Bandra East, Mumbai 400051",
-  //     phone: "+91 98765 43210",
-  //     email: "mumbai@techculture.com",
-  //     image: "/placeholder.svg?height=200&width=300&text=Mumbai+Office",
-  //   },
-  //   {
-  //     city: "Bangalore",
-  //     address: "456 Innovation Hub, Koramangala, Bangalore 560034",
-  //     phone: "+91 98765 43211",
-  //     email: "bangalore@techculture.com",
-  //     image: "/placeholder.svg?height=200&width=300&text=Bangalore+Office",
-  //   },
-  //   {
-  //     city: "Delhi",
-  //     address: "789 Business Center, Connaught Place, Delhi 110001",
-  //     phone: "+91 98765 43212",
-  //     email: "delhi@techculture.com",
-  //     image: "/placeholder.svg?height=200&width=300&text=Delhi+Office",
-  //   },
-  // ]
+ 
 
   const services = [
     "Hardware Solutions",
@@ -162,10 +187,15 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
         </ParallaxSection> */}
         <div className="absolute inset-0">
-                        <Image fill alt="referenceImage" className="object-cover" src="./contact-banner.png" />
-                        {/* Dark overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
-                      </div>
+          <Image
+            fill
+            alt="referenceImage"
+            className="object-cover"
+            src="./contact-banner.png"
+          />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+        </div>
 
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <AnimatedSection>
@@ -174,8 +204,8 @@ export default function ContactPage() {
                 Get In <span className="text-gradient">Touch</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed">
-                Ready to transform your business? Let's discuss your project and explore how we can help you achieve
-                your goals.
+                Ready to transform your business? Let's discuss your project and
+                explore how we can help you achieve your goals.
               </p>
             </div>
           </AnimatedSection>
@@ -195,14 +225,17 @@ export default function ContactPage() {
                       Start Your <span className="text-gradient">Project</span>
                     </h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      Fill out the form below and we'll get back to you within 24 hours to discuss your requirements.
+                      Fill out the form below and we'll get back to you within
+                      24 hours to discuss your requirements.
                     </p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-foreground font-medium mb-2">Name *</label>
+                        <label className="block text-foreground font-medium mb-2">
+                          Name *
+                        </label>
                         <Input
                           name="name"
                           value={formData.name}
@@ -213,7 +246,9 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-foreground font-medium mb-2">Email *</label>
+                        <label className="block text-foreground font-medium mb-2">
+                          Email *
+                        </label>
                         <Input
                           name="email"
                           type="email"
@@ -228,7 +263,9 @@ export default function ContactPage() {
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-foreground font-medium mb-2">Phone</label>
+                        <label className="block text-foreground font-medium mb-2">
+                          Phone
+                        </label>
                         <Input
                           name="phone"
                           value={formData.phone}
@@ -238,7 +275,9 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-foreground font-medium mb-2">Company</label>
+                        <label className="block text-foreground font-medium mb-2">
+                          Company
+                        </label>
                         <Input
                           name="company"
                           value={formData.company}
@@ -250,7 +289,9 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-foreground font-medium mb-2">Service Interest</label>
+                      <label className="block text-foreground font-medium mb-2">
+                        Service Interest
+                      </label>
                       <select
                         name="service"
                         value={formData.service}
@@ -259,7 +300,11 @@ export default function ContactPage() {
                       >
                         <option value="">Select a service</option>
                         {services.map((service) => (
-                          <option key={service} value={service} className="bg-background text-foreground">
+                          <option
+                            key={service}
+                            value={service}
+                            className="bg-transparent text-foreground "
+                          >
                             {service}
                           </option>
                         ))}
@@ -267,7 +312,9 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-foreground font-medium mb-2">Message *</label>
+                      <label className="block text-foreground font-medium mb-2">
+                        Message *
+                      </label>
                       <Textarea
                         name="message"
                         value={formData.message}
@@ -308,24 +355,35 @@ export default function ContactPage() {
                     Contact <span className="text-gradient">Information</span>
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-8">
-                    We're here to help you succeed. Reach out to us through any of the following channels.
+                    We're here to help you succeed. Reach out to us through any
+                    of the following channels.
                   </p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   {contactInfo.map((info, index) => (
-                    <Card key={index} className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl">
+                    <Card
+                      key={index}
+                      className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl"
+                    >
                       <CardContent className="py-4 px-6">
                         <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
                           <div className="text-primary">{info.icon}</div>
                         </div>
-                        <h3 className="font-semibold text-foreground mb-2">{info.title}</h3>
+                        <h3 className="font-semibold text-foreground mb-2">
+                          {info.title}
+                        </h3>
                         {info.details.map((detail, idx) => (
-                          <p key={idx} className="text-muted-foreground text-sm">
+                          <p
+                            key={idx}
+                            className="text-muted-foreground text-sm"
+                          >
                             {detail}
                           </p>
                         ))}
-                        <p className="text-primary text-xs mt-2">{info.description}</p>
+                        <p className="text-primary text-xs mt-2">
+                          {info.description}
+                        </p>
                       </CardContent>
                     </Card>
                   ))}
@@ -370,81 +428,33 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Office Locations */}
-      {/* <section className="py-10 px-6">
-        <div className="max-w-7xl mx-auto">
-          <AnimatedSection>
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold font-poppins text-foreground mb-8">
-                Our <span className="text-gradient">Offices</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Visit us at any of our locations across India. We're always happy to meet in person.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {offices.map((office, index) => (
-              <AnimatedSection key={index} delay={index * 200}>
-                <Card className="glass-card glass-hover overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={office.image || "/placeholder.svg"}
-                      alt={`${office.city} Office`}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4">
-                      <h3 className="text-xl font-bold text-white">{office.city}</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-3">
-                      <div className="flex items-start space-x-3">
-                        <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                        <p className="text-muted-foreground text-sm">{office.address}</p>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Phone className="w-4 h-4 text-primary" />
-                        <p className="text-muted-foreground text-sm">{office.phone}</p>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Mail className="w-4 h-4 text-primary" />
-                        <p className="text-muted-foreground text-sm">{office.email}</p>
-                      </div>
-                    </div>
-                    <Button className="w-full mt-6 btn-secondary rounded-full">
-                      Get Directions <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       {/* Map Section */}
       <section className="pb-10 px-6">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <Card className="glass-card p-0 overflow-hidden">
               <div className="relative h-96">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.056200150182!2d77.2225690760672!3d28.628077684281838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd33b95c2ef1%3A0xfe68a915348015f8!2sRohit%20House%2C%202%2C%20Tolstoy%20Rd%2C%20Barakhamba%2C%20New%20Delhi%2C%20Delhi%20110001!5e0!3m2!1sen!2sin!4v1754302489577!5m2!1sen!2sin" 
-                  className="w-full h-full"
-                  style={{border:0}} 
-                  allowFullScreen={true} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+                {settingsData ? (
+                  <div
+                    className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-0"
+                    dangerouslySetInnerHTML={{ __html: settingsData.iframe }}
+                  />
+                ) : (
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.056200150182!2d77.2225690760672!3d28.628077684281838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd33b95c2ef1%3A0xfe68a915348015f8!2sRohit%20House%2C%202%2C%20Tolstoy%20Rd%2C%20Barakhamba%2C%20New%20Delhi%2C%20Delhi%20110001!5e0!3m2!1sen!2sin!4v1754302489577!5m2!1sen!2sin"
+                    className="w-full h-full"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  
+                )}
               </div>
             </Card>
           </AnimatedSection>
         </div>
       </section>
     </div>
-  )
+  );
 }

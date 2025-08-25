@@ -38,7 +38,7 @@ export default function CareersPage() {
     async function fetchData() {
       if (!careerData) {
         try {
-          const res = await axios.get(`${apiUrl}/api/jobpost`);
+          const res = await axios.get(`${apiUrl}/api/job-posts`);
           if (res.data) {
             setCareerData(res.data.jobPosts);
           }

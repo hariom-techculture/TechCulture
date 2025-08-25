@@ -98,18 +98,24 @@ export default function ContactPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
+    if(!formData.company || !formData.email || !formData.message || !formData.name || !formData.phone || !formData.service){
+      alert("Please fill all required fields")
+      setIsSubmitting(false)
+      return
+    }
+
     try{
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/contacts`,
         formData
       );
 
-      console.log("helleo", response);
-
       if (response.status === 201) {
         console.log("Form submitted successfully")
+        setIsSubmitted(true); 
       } else {
         console.error("Error submitting form", response.data)
+        setIsSubmitted(false); 
       }
 
     }
@@ -117,8 +123,8 @@ export default function ContactPage() {
       console.log(error);
     }
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+   setIsSubmitting(false)
+     
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

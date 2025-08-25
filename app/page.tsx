@@ -313,11 +313,11 @@ export default function HomePage() {
             <AnimatedSection animation="fadeInLeft">
               <div className="relative flex ">
                 <Image
-                  src="https://imgs.search.brave.com/BvEbduhIXv-32Rh0QUqg2f2sw8K7urlzjqJnsII5QQo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEzLzk3LzgxLzc3/LzM2MF9GXzEzOTc4/MTc3NTNfVGo4RVFa/NW13d0hpY0lKQkI1/aGEyVFI4SG1hdzNO/dGguanBn"
+                  src="/about2.png"
                   alt="TechCulture Solutions Team"
                   width={500} // Increased from 350
                   height={350}
-                  className="rounded-lg w-full h-auto max-w-md sm:max-w-lg object-cover"
+                  className="rounded-lg w-full h-auto max-w-md sm:max-w-lg object-cover shadow-2xl border border-white/20 backdrop-blur-sm"
                 />
               </div>
             </AnimatedSection>
@@ -1028,7 +1028,10 @@ export default function HomePage() {
                     className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 focus:ring-2 focus:ring-blue-500 outline-none"
                   ></textarea>
                 </div>
-                <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all duration-300">
+                <Button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all duration-300"
+                >
                   Send Message
                 </Button>
               </form>

@@ -97,7 +97,7 @@ export function Navigation() {
     >
       <Link href="/" className="text-xl font-bold mr-8 z-50">
         <div className="relative w-[100px] h-[100px]">
-          {" "}
+         
           {/* Adjust size as needed */}
           {settingsData && <Image
             src={settingsData.logo || "logo.png"}
@@ -178,7 +178,9 @@ export function Navigation() {
                         activeDropdown === item.label ? "rotate-180" : ""
                       }`}
                     />
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                      item.dropdown.some((subItem) => pathname === subItem.href) ? "w-full" : "w-0 group-hover:w-full"
+                    }`}></span>
                   </button>
 
                   {/* Dropdown Menu */}
@@ -211,7 +213,9 @@ export function Navigation() {
                   }`}
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                    pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`}></span>
                 </Link>
               )
             )}

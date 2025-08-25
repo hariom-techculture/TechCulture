@@ -118,9 +118,12 @@ const WorkExperienceSection = () => {
                       <text
                         x={4}
                         y={4}
-                        fontSize={8}
+                        fontSize={10}
                         textAnchor="middle"
-                        fill="#1e293b"
+                        fill="white"
+                        stroke="#000000"
+                        strokeWidth="2"
+                        paintOrder="stroke"
                         className="font-medium"
                       >
                         {name}

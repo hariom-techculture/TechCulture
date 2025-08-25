@@ -20,7 +20,9 @@ export const metadata: Metadata = {
   title: "TechCulture Solutions - Digital Transformation Partner",
   description:
     "Leading IT & Technology Solutions company specializing in Hardware, Software, Enterprise, and GIS Solutions.",
- 
+    icons: {
+      icon: "/favicon.ico",
+    },
 }
 
 export default function RootLayout({

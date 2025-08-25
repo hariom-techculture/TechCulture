@@ -136,11 +136,11 @@ export default function AboutPage() {
             <AnimatedSection animation="fadeInLeft">
               <div className="relative">
                 <Image
-                  src="https://imgs.search.brave.com/BvEbduhIXv-32Rh0QUqg2f2sw8K7urlzjqJnsII5QQo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEzLzk3LzgxLzc3/LzM2MF9GXzEzOTc4/MTc3NTNfVGo4RVFa/NW13d0hpY0lKQkI1/aGEyVFI4SG1hdzNO/dGguanBn"
+                  src="/about.png"
                   alt="TechCulture Solutions Team"
                   width={600}
                   height={500}
-                  className="rounded-lg"
+                  className="rounded-lg shadow-2xl border border-white/20 backdrop-blur-sm"
                 />
               </div>
             </AnimatedSection>
@@ -164,16 +164,6 @@ export default function AboutPage() {
                   utilities, and environmental sectors. Our team is driven by
                   domain expertise, innovation, and a commitment to quality.
                 </p>
-
-                {/* Statistics */}
-                {/* <div className="grid grid-cols-2 gap-6 mt-12">
-                  {stats.map((stat, index) => (
-                    <div key={index} className="text-center">
-                      <div className="text-3xl font-bold text-orange-500 mb-2">{stat.number}</div>
-                      <div className="text-sm text-gray-600">{stat.label}</div>
-                    </div>
-                  ))}
-                </div> */}
               </div>
             </AnimatedSection>
           </div>
@@ -228,11 +218,11 @@ export default function AboutPage() {
             <AnimatedSection animation="fadeInRight">
               <div className="relative flex justify-end">
                 <Image
-                  src="https://imgs.search.brave.com/BvEbduhIXv-32Rh0QUqg2f2sw8K7urlzjqJnsII5QQo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEzLzk3LzgxLzc3/LzM2MF9GXzEzOTc4/MTc3NTNfVGo4RVFa/NW13d0hpY0lKQkI1/aGEyVFI4SG1hdzNO/dGguanBn"
+                  src="/about2.png"
                   alt="Our Vision for the Future"
                   width={600}
                   height={500}
-                  className="rounded-lg shadow-lg"
+                  className="rounded-lg shadow-lg shadow-2xl border border-white/20 backdrop-blur-sm"
                 />
                 {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div> */}
                 {/* <div className="absolute inset-0 flex items-center justify-center">

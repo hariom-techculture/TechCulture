@@ -164,7 +164,7 @@ export default function TeamPage() {
       </section>
 
       {/* Team Categories Navigation */}
-      <section className="py-8 px-4 sticky top-0 z-40 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-950/90">
+      <section className="py-8 px-4 z-40 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-950/90">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center space-x-1">
             {categories.map((category) => (

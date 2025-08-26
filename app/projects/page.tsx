@@ -110,7 +110,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Tab Navigation */}
-      <section className="py-8 px-4 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-950/80">
+      <section className="py-8 px-4 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-950/80">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection>
             <div className="flex justify-center space-x-1">

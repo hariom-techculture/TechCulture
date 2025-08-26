@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react"
+import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Facebook, Instagram } from "lucide-react"
 import { useEffect } from "react";
 import axios from "axios";
 import { useSite } from "@/context/siteContext";
@@ -38,24 +38,55 @@ const { settingsData, setSettingsData } = useSite();
               partner in digital transformation.
             </p>
             <div className="flex space-x-4">
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-primary"
-              >
-                <Linkedin className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-primary"
-              >
-                <Twitter className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-primary"
-              >
-                <Github className="w-5 h-5" />
-              </Link>
+              {settingsData?.linkedin && (
+                <Link
+                  href={settingsData.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </Link>
+              )}
+              {settingsData?.twitter && (
+                <Link
+                  href={settingsData.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Twitter className="w-5 h-5" />
+                </Link>
+              )}
+              {settingsData?.facebook && (
+                <Link
+                  href={settingsData.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Facebook className="w-5 h-5" />
+                </Link>
+              )}
+              {settingsData?.instagram && (
+                <Link
+                  href={settingsData.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Instagram className="w-5 h-5" />
+                </Link>
+              )}
+              {/* Fallback Github link if no social links are provided */}
+              {!settingsData?.linkedin && !settingsData?.twitter && !settingsData?.facebook && !settingsData?.instagram && (
+                <Link
+                  href="#"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                </Link>
+              )}
             </div>
           </div>
 
@@ -127,11 +158,25 @@ const { settingsData, setSettingsData } = useSite();
                     {settingsData.email}
                   </span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  <span className="text-muted-foreground">
-                    {settingsData.address}
-                  </span>
+                <div className="flex items-start space-x-3">
+                  <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <div className="text-muted-foreground">
+                    {settingsData.officeAddress && (
+                      <div className="mb-2">
+                        <div className="font-medium">Office:</div>
+                        <div>{settingsData.officeAddress}</div>
+                      </div>
+                    )}
+                    {settingsData.registeredAddress && (
+                      <div>
+                        <div className="font-medium">Registered:</div>
+                        <div>{settingsData.registeredAddress}</div>
+                      </div>
+                    )}
+                    {!settingsData.officeAddress && !settingsData.registeredAddress && (
+                      <span>Address not available</span>
+                    )}
+                  </div>
                 </div>
               </div>
             )}

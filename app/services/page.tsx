@@ -238,7 +238,7 @@ const ServicePage = () => {
                       {/* Content that slides up */}
                       {/* <div className="absolute inset-0 flex flex-col justify-end transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out"> */}
                       {/* Glass background */}
-                      <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform translate-y-[90%] group-hover:translate-y-0 transition-transform duration-500 z-10" />
+                      <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform xl:translate-y-[90%] xl:group-hover:translate-y-0 xl:ransition-transform duration-500 z-10" />
 
                       {/* Content */}
                       <CardContent className="relative h-full p-6 flex flex-col z-10">
@@ -255,11 +255,11 @@ const ServicePage = () => {
                         {/* <h3 className="text-2xl font-bold text-white">
                         {service.title}
                       </h3> */}
-                        <div className="mt-auto transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 delay-100 pt-4">
-                          <p className="text-gray-100 leading-relaxed transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <div className="mt-auto xl:transform xl:translate-y-[100%] xl:group-hover:translate-y-0 xl:transition-transform duration-500 delay-100 pt-4">
+                          <p className="text-gray-100 leading-relaxed transform xl:opacity-0 xl:group-hover:opacity-100 xl:transition-opacity duration-500 delay-100">
                             {service.description}
                           </p>
-                          <div className="space-y-2 transform opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                          <div className="space-y-2 transform xl:opacity-0 xl:group-hover:opacity-100 xl:transition-opacity duration-500 delay-200">
                             {service.features.map((feature, featureIndex) => (
                               <div
                                 key={featureIndex}

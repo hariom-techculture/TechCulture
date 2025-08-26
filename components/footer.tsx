@@ -64,34 +64,18 @@ const { settingsData, setSettingsData } = useSite();
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/services/hardware"
+                  href="/services"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  Hardware Solutions
+                  Core Services
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/software"
+                  href="/projects"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  Software Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/enterprise"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  Enterprise Solutions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/gis"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  GIS Solutions
+                  Projects
                 </Link>
               </li>
             </ul>
@@ -118,18 +102,10 @@ const { settingsData, setSettingsData } = useSite();
               </li>
               <li>
                 <Link
-                  href="/blog"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/contact"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  Contact
+                  Contact Us
                 </Link>
               </li>
             </ul>

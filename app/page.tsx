@@ -415,7 +415,7 @@ export default function HomePage() {
                     ></div>
 
                     {/* Content Overlay */}
-                    <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform md:translate-y-[90%] md:group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
+                    <div className="absolute inset-0 backdrop-blur-xl bg-white/5 dark:bg-black/20 transform xl:translate-y-[90%] xl:group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
 
                     <CardContent className="relative h-full p-6 flex flex-col z-10">
                       <div className="flex items-start">
@@ -431,7 +431,7 @@ export default function HomePage() {
                         </h3>
                       </div>
 
-                      <div className="mt-auto transform md:translate-y-[100%] md:group-hover:translate-y-0 transition-transform duration-500 delay-100 translate-y-0 opacity-100 md:opacity-0 md:group-hover:opacity-100">
+                      <div className="mt-auto transform xl:translate-y-[100%] xl:group-hover:translate-y-0 transition-transform duration-500 delay-100 translate-y-0 opacity-100 xl:opacity-0 xl:group-hover:opacity-100">
                         <p className="text-sm text-gray-300 mt-6 mb-4 leading-relaxed backdrop-blur-sm">
                           {service.description}
                         </p>
@@ -514,7 +514,7 @@ export default function HomePage() {
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="object-cover xl:group-hover:scale-110 xl:transition-transform duration-700"
                       />
 
                       {/* Category Badge - Top Left */}
@@ -535,7 +535,7 @@ export default function HomePage() {
                       </div>
 
                       {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent xl:opacity-0 xl:group-hover:opacity-100 xl:transition-opacity duration-500 z-20">
                         <div className="absolute bottom-12 left-0 right-0 p-6 text-white z-20">
                           <div className="space-y-4">
                             <p className="text-sm leading-relaxed opacity-90 line-clamp-3">

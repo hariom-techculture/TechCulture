@@ -40,7 +40,6 @@ export default function ContactPage() {
           );
           if (res.status === 200) {
             setSettingsData(res.data.data);
-            console.log("im data ", res.data);
           }
         } catch (error) {
           console.log(error);
@@ -71,15 +70,15 @@ export default function ContactPage() {
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: "Office",
-      details: [settingsData.address],
+      title: "Head Office",
+      details: [settingsData.registeredAddress],
       description: "Visit us during business hours",
     },
     {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Business Hours",
-      details: ["Monday - Friday: 9AM - 6PM", "Saturday: 10AM - 4PM"],
-      description: "Closed on Sundays",
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Corporate Office",
+      details: [settingsData.officeAddress],
+      description: "Visit us during business hours",
     },
   ];}
 
@@ -394,40 +393,6 @@ export default function ContactPage() {
                     </Card>
                   ))}
                 </div>
-
-                {/* Social Links */}
-                {/* <Card className="glass-nav-glow backdrop-blur-3xl bg-white/5 dark:bg-black/10 border border-white/20 dark:border-white/10 shadow-2xl">
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-foreground mb-4">Follow Us</h3>
-                    <div className="flex space-x-4">
-                      <Button size="sm" className="btn-secondary rounded-full w-10 h-10 p-0">
-                        <Linkedin className="w-4 h-4" />
-                      </Button>
-                      <Button size="sm" className="btn-secondary rounded-full w-10 h-10 p-0">
-                        <Twitter className="w-4 h-4" />
-                      </Button>
-                      <Button size="sm" className="btn-secondary rounded-full w-10 h-10 p-0">
-                        <Github className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card> */}
-
-                {/* Quick Actions */}
-                {/* <div className="space-y-4">
-                  <Button className="w-full btn-secondary rounded-full justify-start">
-                    <Calendar className="w-5 h-5 mr-3" />
-                    Schedule a Meeting
-                  </Button>
-                  <Button className="w-full btn-secondary rounded-full justify-start">
-                    <MessageSquare className="w-5 h-5 mr-3" />
-                    Live Chat Support
-                  </Button>
-                  <Button className="w-full btn-secondary rounded-full justify-start">
-                    <Users className="w-5 h-5 mr-3" />
-                    Request Demo
-                  </Button>
-                </div> */}
               </div>
             </AnimatedSection>
           </div>
@@ -435,15 +400,20 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="pb-10 px-6">
+      <section className="pb-10 px-6 space-y-6">
         <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold font-poppins text-foreground mb-6">
+            Head <span className="text-gradient">office</span>
+          </h2>
           <AnimatedSection>
             <Card className="glass-card p-0 overflow-hidden">
               <div className="relative h-96">
                 {settingsData ? (
                   <div
                     className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-0"
-                    dangerouslySetInnerHTML={{ __html: settingsData.iframe }}
+                    dangerouslySetInnerHTML={{
+                      __html: settingsData.registeredIframe,
+                    }}
                   />
                 ) : (
                   <iframe
@@ -454,7 +424,35 @@ export default function ContactPage() {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
-                  
+                )}
+              </div>
+            </Card>
+          </AnimatedSection>
+        </div>
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold font-poppins text-foreground mb-6">
+            Corporate <span className="text-gradient">office</span>
+          </h2>
+          <AnimatedSection>
+            <Card className="glass-card p-0 overflow-hidden">
+              <div className="relative h-96">
+                {settingsData ? (
+                  <div
+                    className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-0"
+                    dangerouslySetInnerHTML={{
+                      __html: settingsData.officeIframe,
+                    }}
+                  />
+                ) : (
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.336032841482!2d77.35435776491295!3d28.627244195359893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce54f9814a4c1%3A0x729f42021b824a36!2sCorenthum%20Building%2C%2034%2F2%2C%20Block%20A%2C%20Industrial%20Area%2C%20Sector%2062%2C%20Noida%2C%20Uttar%20Pradesh%20201309!5e0!3m2!1sen!2sin!4v1756187696071!5m2!1sen!2sin"
+                    width="600"
+                    height="450"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 )}
               </div>
             </Card>

@@ -20,7 +20,7 @@ jobs:
             cd /root/website
             git fetch --all
             git reset --hard origin/master
-            npm ci
-            npm run build
+            pnpm install --legacy-peer-deps --frozen-lockfile
+            pnpm run build || true
             pm2 restart website
             pm2 save

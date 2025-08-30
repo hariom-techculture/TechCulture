@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import { useParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface FormData {
   firstName: string;
@@ -23,7 +24,6 @@ interface FormData {
 }
 
 interface FormErrors {
-  [key: string]: string | undefined;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -46,8 +46,6 @@ export default function ApplyPage() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -65,18 +63,58 @@ export default function ApplyPage() {
     const { name, value } = e.target;
     if (e.target instanceof HTMLInputElement && e.target.type === 'file') {
       const files = e.target.files;
-      setFormData((prev) => ({
-        ...prev,
-        [name]: files?.[0] || null,
-      }));
+      const file = files?.[0];
+      
+      if (file) {
+        // File size validation (5MB limit)
+        const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+        if (file.size > maxSize) {
+          const errorMsg = "File size too large. Please upload a file smaller than 5MB.";
+          toast.error(errorMsg);
+          setErrors((prev) => ({ ...prev, resume: errorMsg }));
+          // Clear the file input
+          e.target.value = '';
+          return;
+        }
+        
+        // File type validation
+        const allowedTypes = [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ];
+        
+        if (!allowedTypes.includes(file.type)) {
+          const errorMsg = "Please upload a PDF, DOC, or DOCX file";
+          toast.error(errorMsg);
+          setErrors((prev) => ({ ...prev, resume: errorMsg }));
+          // Clear the file input
+          e.target.value = '';
+          return;
+        }
+        
+        // File is valid
+        toast.success(`Resume "${file.name}" selected successfully!`);
+        setFormData((prev) => ({ ...prev, [name]: file }));
+        if (name === 'resume' && errors.resume) {
+          setErrors((prev) => ({ ...prev, resume: undefined }));
+        }
+      } else {
+        setFormData((prev) => ({ ...prev, [name]: null }));
+      }
     } else {
       setFormData((prev) => ({
         ...prev,
         [name]: value,
       }));
-    }
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
+      // Clear errors for specific fields
+      if (name === 'firstName' && errors.firstName) {
+        setErrors((prev) => ({ ...prev, firstName: undefined }));
+      } else if (name === 'lastName' && errors.lastName) {
+        setErrors((prev) => ({ ...prev, lastName: undefined }));
+      } else if (name === 'email' && errors.email) {
+        setErrors((prev) => ({ ...prev, email: undefined }));
+      }
     }
   };
 
@@ -95,16 +133,22 @@ export default function ApplyPage() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
 
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setSubmitted(false);
+      // Show first validation error as toast
+      const firstError = Object.values(validationErrors)[0];
+      if (firstError) {
+        toast.error(firstError);
+      }
       return;
     }
 
-    const name = `${formData.firstName} ${formData.lastName}`
+    setIsSubmitting(true);
+    const loadingToast = toast.loading("Submitting your application...");
+    
+    const name = `${formData.firstName} ${formData.lastName}`;
 
     try {
       const formDataToSend = new FormData();
@@ -131,8 +175,10 @@ export default function ApplyPage() {
       );
 
       if (res.status === 201) {
-        console.log("Application submitted successfully");
-        // Keep submitted = true to show success message
+        toast.dismiss(loadingToast);
+        toast.success("Application submitted successfully! We'll review your submission and get back to you soon.");
+        
+        // Clear form data
         setFormData({
           firstName: "",
           lastName: "",
@@ -143,24 +189,60 @@ export default function ApplyPage() {
           portfolioUrl: "",
           additionalInfo: "",
         });
+        
+        // Clear file input
+        if (fileInputRef.current) fileInputRef.current.value = "";
+        
+        // Clear errors
+        setErrors({});
+        
+        // Show success page
+        setSubmitted(true);
+      } else {
+        toast.dismiss(loadingToast);
+        toast.error("Failed to submit application. Please try again.");
       }
     } catch (err: any) {
-      console.log(err);
-      if (err.response?.status === 400) {
-        setErrors({ form: err.response.data.message });
+      toast.dismiss(loadingToast);
+      console.error("Error submitting job application:", err);
+      
+      // Show appropriate error message via toast only (no form state changes to prevent blinking)
+      if (err.response?.data?.message) {
+        toast.error(err.response.data.message);
+      } else if (err.response?.status === 400) {
+        toast.error("Invalid application data. Please check your information.");
+      } else if (err.response?.status === 413) {
+        toast.error("File size too large. Please upload a smaller file.");
+      } else if (err.response?.status === 500) {
+        toast.error("Server error. Please try again later.");
+      } else if (err.code === 'ECONNREFUSED' || err.code === 'NETWORK_ERROR') {
+        toast.error("Network error. Please check your connection and try again.");
       } else {
-        setErrors({ form: "Failed to submit application. Please try again." });
+        toast.error("Failed to submit application. Please try again.");
       }
-      setSubmitted(false);
     }
 
-    setErrors({});
-    if (fileInputRef.current) fileInputRef.current.value = "";
+    setIsSubmitting(false);
   };
 
   const handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
+    
+    if (!file) {
+      toast.error("No file provided");
+      return;
+    }
+    
+    // File size validation (5MB limit)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      const errorMsg = "File size too large. Please upload a file smaller than 5MB.";
+      toast.error(errorMsg);
+      setErrors((prev) => ({ ...prev, resume: errorMsg }));
+      return;
+    }
+    
     const allowedTypes = [
       "application/pdf",
       "application/msword",
@@ -170,10 +252,13 @@ export default function ApplyPage() {
     if (file && allowedTypes.includes(file.type)) {
       setFormData((prev) => ({ ...prev, resume: file }));
       if (errors.resume) setErrors((prev) => ({ ...prev, resume: undefined }));
+      toast.success(`Resume "${file.name}" uploaded successfully!`);
     } else {
+      const errorMsg = "Please upload a PDF, DOC, or DOCX file";
+      toast.error(errorMsg);
       setErrors((prev) => ({ 
         ...prev, 
-        resume: "Please upload a PDF, DOC, or DOCX file" 
+        resume: errorMsg 
       }));
     }
   };
@@ -253,32 +338,6 @@ export default function ApplyPage() {
                       <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
                       <p className="text-gray-600 dark:text-gray-300 font-medium">
                         Submitting your application...
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Form Error Alert */}
-                {submitError && (
-                  <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg animate-fade-in">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-red-100 dark:bg-red-800/50 rounded-full">
-                        <svg
-                          className="w-5 h-5 text-red-600 dark:text-red-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-red-600 dark:text-red-400">
-                        {submitError}
                       </p>
                     </div>
                   </div>
@@ -501,21 +560,6 @@ export default function ApplyPage() {
                     rows={4}
                   />
                 </div>
-
-                {submitError && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-red-600 text-sm">{submitError}</p>
-                  </div>
-                )}
-
-                {submitSuccess && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-green-600 text-sm">
-                      Your application has been submitted successfully! We'll be
-                      in touch soon.
-                    </p>
-                  </div>
-                )}
 
                 <div className="flex justify-end gap-4">
                   <Link href="/careers">

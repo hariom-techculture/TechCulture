@@ -44,6 +44,7 @@ import { Marquee } from "@/components/marquee";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
 import { useSite } from "@/context/siteContext";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 interface Service {
   _id?: string;
@@ -207,19 +208,52 @@ export default function HomePage() {
       : testimonialData.slice(0, 3);
 
 
-    const handleInputChange = (e)=>{
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setEnquiryFrom({
         ...enquiryForm,
         [e.target.name]: e.target.value,
       });
     }
 
-    const handleSubmit = async (e)=>{
-      try{
-        e.preventDefault();
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      
+      // Basic validation
+      if (!enquiryForm.name.trim()) {
+        toast.error("Please enter your name");
+        return;
+      }
+      
+      if (!enquiryForm.email.trim()) {
+        toast.error("Please enter your email");
+        return;
+      }
+      
+      if (!enquiryForm.phone.trim()) {
+        toast.error("Please enter your phone number");
+        return;
+      }
+      
+      if (!enquiryForm.message.trim()) {
+        toast.error("Please enter your message");
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(enquiryForm.email)) {
+        toast.error("Please enter a valid email address");
+        return;
+      }
+
+      const loadingToast = toast.loading("Submitting your enquiry...");
+      
+      try {
         const res = await axios.post(`${apiBaseUrl}/api/enquiries`, enquiryForm);
+        
         if (res.status === 201) {
-          alert("Enquiry submitted successfully!");
+          toast.dismiss(loadingToast);
+          toast.success("Enquiry submitted successfully! We'll get back to you soon.");
           setEnquiryFrom({
             name: "",
             email: "",
@@ -228,11 +262,22 @@ export default function HomePage() {
           });
           setShowEnquiryPopup(false);
         } else {
-          alert("Failed to submit enquiry. Please try again.");
+          toast.dismiss(loadingToast);
+          toast.error("Failed to submit enquiry. Please try again.");
         }
-      }
-      catch (error) {
+      } catch (error: any) {
+        toast.dismiss(loadingToast);
         console.error("Error submitting enquiry form:", error);
+        
+        if (error.response?.data?.message) {
+          toast.error(error.response.data.message);
+        } else if (error.response?.status === 400) {
+          toast.error("Invalid form data. Please check your information.");
+        } else if (error.response?.status === 500) {
+          toast.error("Server error. Please try again later.");
+        } else {
+          toast.error("Failed to submit enquiry. Please check your connection and try again.");
+        }
       }
     }
 

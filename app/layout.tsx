@@ -7,6 +7,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Script from "next/script";
 import { SiteProvider} from "@/context/siteContext"
+import { Toaster } from "react-hot-toast"
 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -45,6 +46,41 @@ export default function RootLayout({
               <main>{children}</main>
               <Footer />
             </div>
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '12px',
+                  color: '#1f2937',
+                },
+                success: {
+                  style: {
+                    background: 'rgba(16, 185, 129, 0.1)',
+                    border: '1px solid rgba(16, 185, 129, 0.3)',
+                    color: '#047857',
+                  },
+                  iconTheme: {
+                    primary: '#10b981',
+                    secondary: '#ffffff',
+                  },
+                },
+                error: {
+                  style: {
+                    background: 'rgba(239, 68, 68, 0.1)',
+                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    color: '#dc2626',
+                  },
+                  iconTheme: {
+                    primary: '#ef4444',
+                    secondary: '#ffffff',
+                  },
+                },
+              }}
+            />
           </SiteProvider>
         </ThemeProvider>
       </body>

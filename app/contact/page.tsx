@@ -27,6 +27,7 @@ import {
 } from "lucide-react"
 import { useSite } from "@/context/siteContext"
 import axios from "axios"
+import toast from "react-hot-toast"
 
 export default function ContactPage() {
   const { settingsData, setSettingsData } = useSite();
@@ -95,35 +96,80 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-
-    if(!formData.company || !formData.email || !formData.message || !formData.name || !formData.phone || !formData.service){
-      alert("Please fill all required fields")
-      setIsSubmitting(false)
-      return
+    
+    // Detailed validation with specific error messages
+    if (!formData.name.trim()) {
+      toast.error("Please enter your name");
+      return;
+    }
+    
+    if (!formData.email.trim()) {
+      toast.error("Please enter your email");
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    
+    if (!formData.phone.trim()) {
+      toast.error("Please enter your phone number");
+      return;
+    }
+    
+    if (!formData.company.trim()) {
+      toast.error("Please enter your company name");
+      return;
+    }
+    
+    if (!formData.service) {
+      toast.error("Please select a service");
+      return;
+    }
+    
+    if (!formData.message.trim()) {
+      toast.error("Please enter your message");
+      return;
     }
 
-    try{
+    setIsSubmitting(true)
+    const loadingToast = toast.loading("Submitting your message...");
+
+    try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/contacts`,
         formData
       );
 
       if (response.status === 201) {
-        console.log("Form submitted successfully")
+        toast.dismiss(loadingToast);
+        toast.success("Message sent successfully! We'll get back to you within 24 hours.");
         setIsSubmitted(true); 
       } else {
-        console.error("Error submitting form", response.data)
-        setIsSubmitted(false); 
+        toast.dismiss(loadingToast);
+        toast.error("Failed to send message. Please try again.");
+        console.error("Error submitting form", response.data);
       }
 
-    }
-    catch(error){
-      console.log(error);
+    } catch (error: any) {
+      toast.dismiss(loadingToast);
+      console.error("Error submitting contact form:", error);
+      
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else if (error.response?.status === 400) {
+        toast.error("Invalid form data. Please check your information.");
+      } else if (error.response?.status === 500) {
+        toast.error("Server error. Please try again later.");
+      } else {
+        toast.error("Failed to send message. Please check your connection and try again.");
+      }
     }
 
-   setIsSubmitting(false)
-     
+    setIsSubmitting(false)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

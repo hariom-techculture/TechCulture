@@ -18,10 +18,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Check for saved theme or system preference
+    // Check for saved theme, default to light mode on first visit
     const savedTheme = localStorage.getItem("theme") as Theme
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-    const initialTheme = savedTheme || systemTheme
+    const initialTheme = savedTheme || "light" // Always default to light mode
 
     setTheme(initialTheme)
     setMounted(true)

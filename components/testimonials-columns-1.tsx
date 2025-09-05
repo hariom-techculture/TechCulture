@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 interface Testimonial {
@@ -13,7 +13,40 @@ export const TestimonialsColumn = (props: {
   className?: string;
   testimonials: Testimonial[];
   duration?: number;
-}) => {   
+}) => {
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set scrolling to true immediately when scroll starts
+      setIsScrolling(true);
+
+      // Clear existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      // Set a new timeout to detect when scrolling stops
+      const timeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150); // 150ms delay after scroll stops
+
+      setScrollTimeout(timeout);
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [scrollTimeout]);
+   
   return (
     <div className={`relative h-[75vh] overflow-hidden ${props.className}`}>
       {/* Top fade gradient */}
@@ -31,6 +64,15 @@ export const TestimonialsColumn = (props: {
           repeat: Infinity,
           ease: "linear",
           repeatType: "loop",
+          // Pause animation when scrolling
+          ...(isScrolling && { 
+            duration: 0,
+            repeat: 0 
+          })
+        }}
+        style={{
+          // Pause the animation using CSS when scrolling
+          animationPlayState: isScrolling ? 'paused' : 'running'
         }}
         className="flex flex-col gap-8 pb-8"
       >
